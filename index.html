@@ -1,0 +1,1015 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Aether</title>
+<meta name="description" content="Aether: a members-only community by Masha. Lessons, real-world operations and a Circle that holds you to it.">
+<meta name="theme-color" content="#121a16">
+<meta property="og:title" content="Aether">
+<meta property="og:description" content="Beyond the visible. Consciousness, connection, expansion.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://longevusmarcus.github.io/aether-celtic/">
+<meta property="og:image" content="https://longevusmarcus.github.io/aether-celtic/og-logo.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Aether knot logo">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://longevusmarcus.github.io/aether-celtic/og-logo.jpg">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: native-app conventions (greeting header, search pill, round shortcuts, promo card, carousels, raised centre tab).
+   Palette from the approved Aether theme; one sans family throughout. Single dark world by design. */
+:root {
+  --bg: oklch(0.135 0.012 165);
+  --surface: oklch(0.18 0.014 163);
+  --surface-2: oklch(0.225 0.016 160);
+  --line: oklch(0.30 0.018 155);
+  --text: oklch(0.94 0.018 92);
+  --text-2: oklch(0.72 0.02 115);
+  --text-3: oklch(0.54 0.016 135);
+  --ember: oklch(0.78 0.105 82);
+  --ember-deep: oklch(0.44 0.08 70);
+  --ember-glow: oklch(0.78 0.105 82 / 0.30);
+  --pt-spirit: oklch(0.86 0.05 85);
+  --pt-mind: oklch(0.82 0.035 210);
+  --pt-body: oklch(0.78 0.07 40);
+  --pt-shadow: oklch(0.66 0.05 300);
+  --stage: oklch(0.09 0.01 165);
+  --font: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", "Inter", system-ui, sans-serif;
+  --r-sm: 12px; --r: 18px; --r-lg: 24px;
+  --gutter: 20px;
+  --tabbar-h: 84px;
+  color-scheme: dark;
+}
+@property --sweep { syntax: "<angle>"; inherits: false; initial-value: 0deg; }
+@property --k1 { syntax: "<color>"; inherits: true; initial-value: oklch(0.95 0.01 85); }
+@property --k2 { syntax: "<color>"; inherits: true; initial-value: oklch(0.95 0.01 85); }
+@property --k3 { syntax: "<color>"; inherits: true; initial-value: oklch(0.95 0.01 85); }
+@property --k4 { syntax: "<color>"; inherits: true; initial-value: oklch(0.95 0.01 85); }
+
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { height: 100%; }
+body { margin: 0; background: var(--stage); color: var(--text); font: 400 15px/1.45 var(--font); -webkit-font-smoothing: antialiased; }
+button, input, textarea { font: inherit; color: inherit; }
+button { background: none; border: 0; padding: 0; cursor: pointer; text-align: inherit; }
+:focus-visible { outline: 2px solid var(--ember); outline-offset: 2px; }
+h1, h2, h3, p { margin: 0; }
+
+/* ---------- stage / device ---------- */
+.stage { min-height: 100%; display: flex; align-items: center; justify-content: center; gap: 64px; padding-block: 32px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: radial-gradient(60% 50% at 70% 40%, oklch(0.22 0.04 150 / 0.6), transparent 70%), var(--stage); }
+.brief { max-width: 290px; display: grid; gap: 14px; }
+.brief .wm { font-weight: 400; font-size: 22px; letter-spacing: 0.22em; }
+.brief p, .brief li { color: var(--text-2); font-size: 14px; }
+.brief ul { margin: 0; padding-left: 18px; display: grid; gap: 6px; }
+.brief .tag { justify-self: start; font-size: 11px; font-weight: 500; color: var(--ember); border: 1px solid var(--ember); border-radius: 99px; padding: 5px 11px; }
+.device { width: 392px; height: min(848px, calc(100dvh - 64px)); min-height: 660px; border-radius: 56px; padding: 11px; background: linear-gradient(145deg, oklch(0.36 0.004 70), oklch(0.16 0.003 70) 40%, oklch(0.30 0.004 70)); box-shadow: 0 50px 120px oklch(0 0 0 / 0.7), inset 0 0 0 1px oklch(0.45 0.004 70); flex: none; }
+.app { position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--bg); border-radius: 46px; isolation: isolate; }
+.statusbar { position: absolute; top: 0; left: 0; right: 0; height: 50px; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 6px 30px 0 34px; font-weight: 600; font-size: 15px; pointer-events: none; }
+.statusbar .island { position: absolute; left: 50%; top: 10px; width: 112px; height: 32px; border-radius: 20px; background: #000; transform: translateX(-50%); }
+.statusbar .sys { display: flex; gap: 6px; align-items: center; }
+.statusbar .batt { width: 24px; height: 12px; border: 1.5px solid var(--text); border-radius: 4px; padding: 1.5px; }
+.statusbar .batt i { display: block; height: 100%; width: 80%; background: var(--text); border-radius: 1.5px; }
+.homebar { position: absolute; bottom: 8px; left: 50%; width: 134px; height: 5px; border-radius: 3px; background: var(--text); transform: translateX(-50%); z-index: 60; pointer-events: none; }
+:root { --top: 54px; }
+@media (max-width: 760px) {
+  :root { --top: max(14px, env(safe-area-inset-top, 0px)); }
+  .brief, .statusbar, .homebar { display: none; }
+  .stage { padding: 0; display: block; height: 100%; background: var(--bg); }
+  .device { width: 100%; height: 100%; min-height: 0; border-radius: 0; padding: 0; box-shadow: none; background: none; }
+  .app { border-radius: 0; }
+}
+
+/* ---------- views ---------- */
+.view { position: absolute; inset: 0; overflow-y: auto; overflow-x: hidden; scrollbar-width: none; padding: var(--top) var(--gutter) calc(var(--tabbar-h) + 32px); }
+.view::-webkit-scrollbar { display: none; }
+.view.full { padding-bottom: 32px; }
+.view.enter-up { animation: enterUp 280ms ease-out both; }
+.view.enter-right { animation: enterRight 320ms ease-out both; }
+.view.enter-left { animation: enterLeft 320ms ease-out both; }
+@keyframes enterUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes enterRight { from { opacity: 0; transform: translateX(28px); } to { opacity: 1; transform: none; } }
+@keyframes enterLeft { from { opacity: 0; transform: translateX(-28px); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+@keyframes rise { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+
+.lucide { width: 20px; height: 20px; stroke-width: 1.6; }
+.bg-knot { position: absolute; top: -90px; right: -120px; width: 420px; opacity: 0.06; pointer-events: none; z-index: -1; }
+
+/* ---------- shared components ---------- */
+.hdr { display: flex; align-items: center; gap: 12px; padding: 8px 0 18px; }
+.hdr .who { flex: 1; min-width: 0; }
+.hdr .hi { font-size: 13px; color: var(--text-2); }
+.hdr .nm { font-size: 21px; font-weight: 500; line-height: 1.2; }
+.circbtn { width: 46px; height: 46px; border-radius: 50%; border: 1px solid var(--line); background: oklch(0.17 0.005 70 / 0.7); display: grid; place-items: center; position: relative; flex: none; transition: transform 120ms; }
+.circbtn:active { transform: scale(0.95); }
+.circbtn .dot { position: absolute; top: 11px; right: 12px; width: 8px; height: 8px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 0 2px var(--bg); }
+.navbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 0 16px; }
+.navbar .t { font-size: 17px; font-weight: 500; }
+.page-title { font-size: 30px; font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; padding: 8px 0 16px; }
+.av { width: 52px; height: 52px; border-radius: 50%; flex: none; display: grid; place-items: center; font-weight: 500; font-size: 17px; color: oklch(0.15 0.01 70); background: var(--g, linear-gradient(140deg, var(--pt-spirit), var(--ember))); border: 2px solid var(--bg); }
+.av.sm { width: 32px; height: 32px; font-size: 12px; border-width: 2px; }
+.av.xs { width: 26px; height: 26px; font-size: 10px; }
+.av.lg { width: 92px; height: 92px; font-size: 30px; border-width: 3px; }
+.faces { display: flex; }
+.faces .av { margin-left: -9px; }
+.faces .av:first-child { margin-left: 0; }
+
+.search { display: flex; align-items: center; gap: 12px; height: 54px; padding: 0 18px; border-radius: 99px; border: 1px solid var(--line); background: oklch(0.17 0.005 70 / 0.75); color: var(--text-3); }
+.search input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: var(--text); font-size: 15px; }
+.search input::placeholder { color: var(--text-3); }
+
+.shortcuts { display: flex; gap: 14px; overflow-x: auto; scrollbar-width: none; margin: 22px calc(var(--gutter) * -1) 0; padding: 0 var(--gutter) 4px; }
+.shortcuts::-webkit-scrollbar { display: none; }
+.sc { flex: none; display: grid; justify-items: center; gap: 8px; width: 62px; font-size: 13px; color: var(--text-2); }
+.sc .ic { width: 58px; height: 58px; border-radius: 50%; display: grid; place-items: center; background: radial-gradient(circle at 35% 30%, color-mix(in oklch, var(--c) 45%, var(--surface-2)), var(--surface) 75%); border: 1px solid color-mix(in oklch, var(--c) 35%, var(--line)); color: var(--c); transition: transform 120ms; }
+.sc:active .ic { transform: scale(0.94); }
+.sc .ic .lucide { width: 24px; height: 24px; }
+
+.sec-h { display: flex; align-items: baseline; justify-content: space-between; margin: 30px 0 14px; }
+.sec-h h2 { font-size: 19px; font-weight: 500; }
+.sec-h button { font-size: 14px; color: var(--ember); }
+
+.promo { position: relative; overflow: hidden; border-radius: var(--r-lg); padding: 22px 20px; min-height: 172px; background: radial-gradient(120% 140% at 100% 0%, oklch(0.55 0.09 85), transparent 60%), linear-gradient(120deg, oklch(0.30 0.06 158), oklch(0.19 0.025 165)); margin-top: 26px; display: grid; align-content: start; gap: 8px; }
+.promo h3 { font-size: 22px; font-weight: 600; max-width: 62%; line-height: 1.2; }
+.promo p { font-size: 14px; color: oklch(0.90 0.02 80); max-width: 60%; }
+.promo .pill { margin-top: 10px; justify-self: start; }
+.promo .art-knot { position: absolute; right: -46px; top: 50%; width: 200px; transform: translateY(-50%); color: oklch(0.95 0.03 80 / 0.55); --knot-bg: oklch(0.36 0.06 120); opacity: 0.9; }
+
+.pill { display: inline-flex; align-items: center; gap: 8px; height: 38px; padding: 0 16px; border-radius: 99px; font-size: 14px; font-weight: 500; background: oklch(0.12 0.004 70 / 0.55); color: var(--text); border: 1px solid oklch(1 0 0 / 0.12); }
+.btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 56px; border-radius: 99px; font-size: 16px; font-weight: 500; background: var(--text); color: oklch(0.14 0.005 70); transition: transform 120ms; }
+a.btn { text-decoration: none; }
+.btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
+.btn.ember { background: var(--ember); color: oklch(0.18 0.02 60); }
+.btn.done { background: var(--surface-2); color: var(--ember); }
+.btn:active { transform: scale(0.98); }
+.btn .lucide { width: 18px; height: 18px; }
+
+.carousel { display: flex; gap: 12px; overflow-x: auto; scrollbar-width: none; margin: 0 calc(var(--gutter) * -1); padding: 0 var(--gutter) 4px; scroll-snap-type: x mandatory; }
+.carousel::-webkit-scrollbar { display: none; }
+.host { flex: none; width: 138px; scroll-snap-align: start; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); padding: 16px 12px 14px; display: grid; justify-items: center; gap: 4px; text-align: center; }
+.host .av { width: 64px; height: 64px; margin-bottom: 8px; font-size: 21px; }
+.host .n { font-weight: 500; font-size: 15px; }
+.host .r { font-size: 13px; color: var(--text-2); display: flex; align-items: center; gap: 4px; }
+.host .r .lucide { width: 13px; height: 13px; color: var(--ember); fill: var(--ember); }
+
+.card { display: block; width: 100%; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); overflow: hidden; transition: transform 120ms; }
+.card:active { transform: scale(0.985); }
+.art { position: relative; overflow: hidden; background: radial-gradient(70% 90% at var(--x, 75%) var(--y, 20%), color-mix(in oklch, var(--c) 70%, transparent), transparent 70%), radial-gradient(60% 60% at 10% 100%, color-mix(in oklch, var(--c) 25%, transparent), transparent 70%), linear-gradient(160deg, var(--surface-2), oklch(0.13 0.004 70)); }
+.art svg { position: absolute; width: 130%; right: -38%; top: -20%; opacity: 0.22; color: var(--text); --knot-bg: transparent; }
+.art .badge { position: absolute; left: 12px; top: 12px; }
+.feature .art { height: 168px; }
+.feature .body { padding: 16px; display: grid; gap: 6px; }
+.feature h3 { font-size: 18px; font-weight: 500; line-height: 1.25; }
+.meta { font-size: 13px; color: var(--text-2); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.meta .lucide { width: 14px; height: 14px; }
+.tag { display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 99px; font-size: 12px; font-weight: 500; color: var(--c, var(--text)); background: oklch(0.12 0.004 70 / 0.7); border: 1px solid color-mix(in oklch, var(--c, var(--text)) 30%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+.tag i { width: 6px; height: 6px; border-radius: 50%; background: currentColor; display: block; }
+.prog { height: 4px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.prog > span { display: block; height: 100%; border-radius: 4px; background: var(--ember); transition: width 500ms ease-out; }
+
+.rowcard { display: flex; align-items: center; gap: 14px; width: 100%; padding: 12px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); transition: transform 120ms; }
+.rowcard:active { transform: scale(0.985); }
+.rowcard .thumb { width: 68px; height: 68px; border-radius: 14px; flex: none; }
+.rowcard .txt { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.rowcard .tt { font-size: 16px; font-weight: 500; line-height: 1.25; }
+.rowcard .chev { color: var(--text-3); }
+.list { display: grid; gap: 10px; }
+
+.chips { display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; margin: 16px calc(var(--gutter) * -1) 0; padding: 0 var(--gutter); }
+.chips::-webkit-scrollbar { display: none; }
+.chip { flex: none; height: 38px; padding: 0 16px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); font-size: 14px; color: var(--text-2); display: inline-flex; align-items: center; gap: 8px; }
+.chip.on { background: var(--text); color: oklch(0.14 0.005 70); border-color: var(--text); }
+.chip i { width: 7px; height: 7px; border-radius: 50%; background: var(--c); display: block; }
+.seg { display: grid; grid-template-columns: repeat(3, 1fr); padding: 4px; border-radius: 99px; background: var(--surface); border: 1px solid var(--line); }
+.seg button { height: 38px; border-radius: 99px; font-size: 14px; color: var(--text-2); text-align: center; }
+.seg button.on { background: var(--surface-2); color: var(--text); font-weight: 500; }
+
+.line-card { border-radius: var(--r); padding: 20px; background: linear-gradient(150deg, var(--surface-2), var(--surface)); border: 1px solid var(--line); display: grid; gap: 14px; }
+.line-card .q { font-size: 21px; font-weight: 400; line-height: 1.35; }
+.line-card .q span { opacity: 0; animation: fade 500ms ease-out forwards; }
+.line-card .by { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-2); }
+
+/* ---------- gate ---------- */
+.gate { position: relative; min-height: 100%; display: flex; flex-direction: column; align-items: center; text-align: center; }
+.gate .glow { position: absolute; inset: -80px -40px auto; height: 420px; background: radial-gradient(50% 50% at 50% 50%, oklch(0.42 0.08 130 / 0.35), transparent 70%); z-index: -1; }
+.gate .knotwrap { width: 52%; max-width: 200px; margin-top: 64px; -webkit-mask: conic-gradient(from 0deg, #000 var(--sweep), transparent 0); mask: conic-gradient(from 0deg, #000 var(--sweep), transparent 0); animation: sweep 2200ms ease-in-out forwards, kglow 600ms 2200ms ease-out forwards; }
+@keyframes sweep { to { --sweep: 360deg; } }
+@keyframes kglow { to { filter: drop-shadow(0 0 22px oklch(0.95 0.01 85 / 0.18)); } }
+.gate .wm { margin: 34px -0.22em 0 0; font-weight: 400; font-size: 36px; letter-spacing: 0.22em; animation: track 900ms 2300ms ease-out both; }
+@keyframes track { from { opacity: 0; letter-spacing: 0.45em; margin-right: -0.45em; } to { opacity: 1; letter-spacing: 0.22em; margin-right: -0.22em; } }
+.gate .tl { margin-top: 14px; font-size: 13px; letter-spacing: 0.04em; color: var(--text-2); animation: fade 500ms 2900ms both; }
+.gate .pl { margin-top: 10px; font-size: 16px; color: var(--text); animation: fade 500ms 3050ms both; }
+.gate .panel { width: 100%; margin-top: auto; padding: 24px 20px 20px; border-radius: 28px; background: var(--surface); border: 1px solid var(--line); display: grid; gap: 12px; text-align: left; animation: rise 450ms 3200ms ease-out both; }
+.gate .panel h2 { font-size: 22px; font-weight: 600; }
+.gate .panel p { color: var(--text-2); font-size: 14px; }
+.input { display: flex; align-items: center; gap: 10px; height: 56px; padding: 0 8px 0 18px; border-radius: 99px; border: 1px solid var(--line); background: var(--bg); margin-top: 4px; }
+.input:focus-within { border-color: var(--ember); }
+.input input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; font-size: 15px; letter-spacing: 0.08em; }
+.input input::placeholder { letter-spacing: 0; color: var(--text-3); }
+.input button { width: 42px; height: 42px; border-radius: 50%; background: var(--text); color: oklch(0.14 0.005 70); display: grid; place-items: center; flex: none; }
+.err { min-height: 16px; font-size: 13px; color: var(--ember); padding-left: 18px; }
+.gate .foot { display: flex; justify-content: space-between; font-size: 12px; color: var(--text-3); padding: 2px 4px 0; font-variant-numeric: tabular-nums; }
+
+/* ---------- reading ---------- */
+.stepbar { display: flex; gap: 6px; flex: 1; }
+.stepbar i { flex: 1; height: 4px; border-radius: 4px; background: var(--surface-2); display: block; transition: background 400ms; }
+.stepbar i.on { background: var(--ember); }
+.q-anim { animation: enterRight 350ms ease-out both; }
+.q-n { font-size: 13px; color: var(--ember); font-weight: 500; margin-top: 18px; }
+.q { font-size: 27px; font-weight: 500; line-height: 1.22; margin: 8px 0 24px; text-wrap: balance; }
+.opt { display: flex; align-items: center; gap: 14px; width: 100%; padding: 18px; border-radius: var(--r); border: 1px solid var(--line); background: var(--surface); margin-bottom: 10px; font-size: 16px; transition: border-color 150ms, background 150ms; }
+.opt .radio { width: 22px; height: 22px; border-radius: 50%; border: 1.5px solid var(--text-3); flex: none; display: grid; place-items: center; transition: all 150ms; }
+.opt.sel { border-color: var(--ember); background: color-mix(in oklch, var(--ember) 8%, var(--surface)); }
+.opt.sel .radio { border-color: var(--ember); background: var(--ember); box-shadow: 0 0 0 4px var(--ember-glow); }
+.result .knotwrap { width: 66%; margin: 4px auto 22px; }
+.pts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.ptcard { border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); padding: 14px; display: grid; gap: 10px; }
+.ptcard .top { display: flex; justify-content: space-between; font-size: 14px; }
+.ptcard .top b { font-weight: 500; color: var(--c); }
+.ptcard .top span { color: var(--text-2); font-variant-numeric: tabular-nums; }
+.ptcard .prog > span { background: var(--c); }
+.callout { border-radius: var(--r); padding: 16px; background: color-mix(in oklch, var(--ember) 9%, var(--surface)); border: 1px solid color-mix(in oklch, var(--ember) 30%, var(--line)); font-size: 15px; display: grid; gap: 6px; }
+.callout b { font-weight: 500; }
+
+/* ---------- intro + book ---------- */
+.src { align-items: flex-start; }
+.book { display: flex; gap: 16px; align-items: center; width: 100%; padding: 14px; border-radius: var(--r); background: linear-gradient(130deg, oklch(0.26 0.045 155), var(--surface) 70%); border: 1px solid var(--line); }
+.book img { width: 78px; height: 117px; border-radius: 6px; object-fit: cover; flex: none; box-shadow: 0 10px 24px oklch(0 0 0 / 0.5), 0 0 0 1px oklch(1 0 0 / 0.08); background: #0b0a09; }
+.book .txt { flex: 1; min-width: 0; display: grid; gap: 4px; }
+.book .tt { font-size: 17px; font-weight: 600; line-height: 1.2; }
+.book .acts { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+.book .acts .btn { width: auto; height: 38px; padding: 0 14px; font-size: 13px; }
+.bookhero { display: grid; justify-items: center; gap: 14px; text-align: center; padding: 6px 0 4px; }
+.bookhero img { width: 52%; max-width: 200px; aspect-ratio: 2 / 3; border-radius: 8px; box-shadow: 0 24px 50px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.08); background: #0b0a09; }
+.toc { display: grid; gap: 0; }
+.toc div { display: flex; justify-content: space-between; gap: 12px; padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
+.toc span { color: var(--text-3); font-variant-numeric: tabular-nums; }
+
+.opcard .art { height: 150px; }
+.opcard .body { padding: 16px; display: grid; gap: 6px; }
+.opcard h3 { font-size: 20px; font-weight: 600; }
+.opno { position: absolute; left: 14px; bottom: 12px; font-size: 34px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); opacity: 0.9; }
+
+/* ---------- detail ---------- */
+.hero { margin: calc(var(--top) * -1) calc(var(--gutter) * -1) 0; height: 300px; position: relative; }
+.hero::after { content: ""; position: absolute; inset: auto 0 0; height: 120px; background: linear-gradient(transparent, var(--bg)); }
+.hero .bar { position: absolute; top: var(--top); left: var(--gutter); right: var(--gutter); display: flex; justify-content: space-between; z-index: 2; }
+.detail-title { font-size: 27px; font-weight: 600; line-height: 1.2; margin-top: -24px; position: relative; text-wrap: balance; }
+.facts { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+.facts .tag { height: 32px; padding: 0 12px; font-size: 13px; }
+.facts .tag .lucide { width: 14px; height: 14px; }
+.para { color: var(--text-2); font-size: 15px; line-height: 1.55; }
+.steps { display: grid; gap: 10px; }
+.step { display: flex; gap: 14px; align-items: flex-start; padding: 14px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); font-size: 15px; }
+.step .n { width: 28px; height: 28px; border-radius: 50%; background: var(--surface-2); color: var(--ember); display: grid; place-items: center; font-size: 13px; font-weight: 600; flex: none; }
+.lesson { display: flex; align-items: center; gap: 14px; padding: 12px 0; width: 100%; border-bottom: 1px solid var(--line); }
+.lesson .play { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--surface-2); flex: none; color: var(--text-2); }
+.lesson.done .play { background: color-mix(in oklch, var(--ember) 20%, var(--surface)); color: var(--ember); }
+.lesson.next .play { background: var(--text); color: oklch(0.14 0.005 70); }
+.lesson .play .lucide { width: 18px; height: 18px; }
+.lesson .txt { flex: 1; min-width: 0; }
+.lesson .lt { font-size: 15px; font-weight: 500; }
+.lesson .ld { font-size: 13px; color: var(--text-2); }
+.people { display: flex; align-items: center; justify-content: space-between; padding: 14px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+.sticky-cta { position: sticky; bottom: 0; margin: 24px calc(var(--gutter) * -1) 0; padding: 14px var(--gutter) 6px; background: linear-gradient(transparent, var(--bg) 30%); }
+
+/* ---------- circle ---------- */
+.group { display: flex; align-items: center; gap: 14px; padding: 16px; border-radius: var(--r); background: linear-gradient(130deg, oklch(0.28 0.05 155), var(--surface)); border: 1px solid var(--line); }
+.group .txt { flex: 1; min-width: 0; }
+.group .t { font-size: 18px; font-weight: 600; }
+.post { padding: 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); display: grid; gap: 12px; }
+.post .head { display: flex; align-items: center; gap: 10px; }
+.post .head .nm { font-weight: 500; font-size: 15px; }
+.post .head .tm { font-size: 12px; color: var(--text-3); }
+.post .head .tag { margin-left: auto; }
+.post .bd { font-size: 15px; line-height: 1.5; }
+.post .proofimg { height: 170px; border-radius: 14px; }
+.post .acts { display: flex; gap: 18px; font-size: 13px; color: var(--text-2); }
+.post .acts button { display: flex; align-items: center; gap: 6px; }
+.post .acts .lucide { width: 17px; height: 17px; }
+.post .acts .liked { color: var(--ember); }
+.post .acts .liked .lucide { fill: var(--ember); }
+
+/* ---------- gatherings ---------- */
+.event { display: grid; gap: 0; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); overflow: hidden; }
+.event .art { height: 132px; }
+.event .datebox { position: absolute; left: 12px; top: 12px; width: 52px; border-radius: 14px; background: oklch(0.12 0.004 70 / 0.75); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); text-align: center; padding: 6px 0; border: 1px solid oklch(1 0 0 / 0.1); }
+.event .datebox b { display: block; font-size: 20px; font-weight: 600; line-height: 1.1; }
+.event .datebox span { font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-2); }
+.event .seatpill { position: absolute; right: 12px; top: 12px; }
+.event .body { padding: 16px; display: grid; gap: 8px; }
+.event h3 { font-size: 18px; font-weight: 500; }
+.event .foot { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 6px; }
+.event .foot .btn { width: auto; height: 42px; padding: 0 18px; font-size: 14px; }
+.event.locked { opacity: 0.6; }
+.seats.flash { animation: seatglow 900ms ease-out; }
+@keyframes seatglow { 30% { box-shadow: 0 0 18px var(--ember-glow); color: var(--ember); } }
+
+/* ---------- profile ---------- */
+.prof { display: grid; justify-items: center; gap: 6px; text-align: center; padding: 6px 0 4px; }
+.prof .nm { font-size: 24px; font-weight: 600; margin-top: 8px; }
+.prof .lvl { font-size: 13px; color: var(--ember); background: color-mix(in oklch, var(--ember) 12%, transparent); padding: 5px 12px; border-radius: 99px; }
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 22px; }
+.stats div { border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); padding: 14px 8px; text-align: center; }
+.stats b { display: block; font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.stats span { font-size: 12px; color: var(--text-2); }
+.knotcard { display: flex; gap: 16px; align-items: center; padding: 16px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); }
+.knotcard .k { width: 112px; flex: none; }
+.knotcard .bars { flex: 1; min-width: 0; display: grid; gap: 10px; }
+.knotcard .b { display: grid; gap: 5px; font-size: 13px; }
+.knotcard .b .lbl { display: flex; justify-content: space-between; }
+.knotcard .b .lbl span { color: var(--text-2); font-variant-numeric: tabular-nums; }
+.knotcard .b .prog > span { background: var(--c); }
+.menu { border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); overflow: hidden; }
+.menu button { display: flex; align-items: center; gap: 14px; width: 100%; padding: 15px 16px; border-top: 1px solid var(--line); font-size: 15px; }
+.menu button:first-child { border-top: 0; }
+.menu .mi { width: 36px; height: 36px; border-radius: 11px; background: var(--surface-2); display: grid; place-items: center; color: var(--ember); flex: none; }
+.menu .mi .lucide { width: 18px; height: 18px; }
+.menu .txt { flex: 1; }
+.menu .val { font-size: 13px; color: var(--text-2); }
+
+/* ---------- knot ---------- */
+.knot { display: block; width: 100%; height: auto; color: var(--text); --knot-bg: var(--bg); overflow: visible; }
+.knotwrap.colored .knot { transition: --k1 900ms ease-in-out, --k2 900ms ease-in-out 120ms, --k3 900ms ease-in-out 240ms, --k4 900ms ease-in-out 360ms; }
+.knotwrap.pulse { animation: pulse 600ms ease-out; }
+@keyframes pulse { 40% { filter: drop-shadow(0 0 18px var(--ember-glow)); } }
+
+/* ---------- tabbar ---------- */
+.tabbar { position: absolute; left: 0; right: 0; bottom: 0; z-index: 20; height: calc(var(--tabbar-h) + env(safe-area-inset-bottom, 0px)); padding: 0 8px env(safe-area-inset-bottom, 0px); display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; background: oklch(0.12 0.004 70 / 0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-top: 1px solid var(--line); }
+.tabbar[hidden] { display: none !important; }
+.tab { height: 100%; display: grid; place-items: center; color: var(--text-3); transition: color 200ms; padding-bottom: 10px; }
+.tab .lucide { width: 24px; height: 24px; stroke-width: 1.5; }
+.tab.on { color: var(--ember); }
+.tab .fab { width: 62px; height: 62px; border-radius: 50%; margin-top: -34px; display: grid; place-items: center; color: oklch(0.16 0.02 60); background: radial-gradient(circle at 35% 30%, oklch(0.88 0.07 80), var(--ember) 45%, var(--ember-deep)); box-shadow: 0 8px 24px oklch(0.6 0.09 65 / 0.35), 0 0 0 6px var(--bg); transition: transform 150ms; }
+.tab .fab { background: radial-gradient(circle at 35% 28%, oklch(0.27 0.03 158), oklch(0.15 0.012 165) 70%); box-shadow: 0 0 0 1px oklch(0.78 0.105 82 / 0.6), 0 8px 26px oklch(0.6 0.09 65 / 0.30), 0 0 0 7px var(--bg); }
+.fabknot { width: 38px; height: 38px; color: var(--ember); --knot-bg: oklch(0.20 0.02 160); --k1: var(--ember); --k2: var(--ember); --k3: var(--ember); --k4: var(--ember); transition: transform 300ms ease-out; }
+.tab.center.on .fab { box-shadow: 0 0 0 1.5px var(--ember), 0 8px 30px oklch(0.7 0.1 70 / 0.5), 0 0 0 7px var(--bg); }
+.tab.center.on .fabknot { transform: rotate(45deg); }
+.tab:active .fab { transform: scale(0.94); }
+.tab.center.on .fab { box-shadow: 0 8px 28px oklch(0.7 0.1 70 / 0.55), 0 0 0 6px var(--bg); }
+
+/* ---------- sheet + toast ---------- */
+.scrim { position: absolute; inset: 0; z-index: 70; background: oklch(0 0 0 / 0.55); backdrop-filter: blur(3px); -webkit-backdrop-filter: blur(3px); animation: fade 300ms both; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; z-index: 71; background: var(--surface); border-radius: 28px 28px 0 0; padding: 12px var(--gutter) calc(30px + env(safe-area-inset-bottom, 0px)); animation: sheetUp 360ms ease-out both; display: grid; gap: 16px; }
+.sheet .grab { width: 40px; height: 5px; border-radius: 3px; background: var(--line); margin: 0 auto 4px; }
+.sheet h2 { font-size: 22px; font-weight: 600; }
+.sheet p { color: var(--text-2); }
+@keyframes sheetUp { from { transform: translateY(100%); } to { transform: none; } }
+.photo { height: 170px; border-radius: var(--r); border: 1.5px dashed var(--line); display: grid; place-items: center; color: var(--text-2); text-align: center; font-size: 14px; gap: 6px; }
+.photo.has { border: 0; color: var(--text); }
+textarea { width: 100%; min-height: 96px; resize: none; background: var(--bg); border: 1px solid var(--line); border-radius: var(--r); padding: 14px; font-size: 15px; outline: none; }
+textarea:focus { border-color: var(--ember); }
+.toast { position: absolute; left: var(--gutter); right: var(--gutter); bottom: calc(var(--tabbar-h) + 18px); z-index: 80; background: var(--text); color: oklch(0.14 0.005 70); border-radius: 16px; padding: 14px 16px; font-size: 14px; font-weight: 500; display: flex; gap: 10px; align-items: center; animation: rise 300ms ease-out both; box-shadow: 0 12px 30px oklch(0 0 0 / 0.4); }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 1ms !important; animation-delay: 0ms !important; transition-duration: 1ms !important; }
+  .gate .knotwrap { -webkit-mask: none; mask: none; }
+}
+
+
+/* ---------- celtic touches: interlace braid + knot corners ---------- */
+.braid { height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg fill='none' stroke-linecap='butt'%3E%3Cpath d='M0 4C10 4 10 12 20 12S30 4 40 4' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M0 12C10 12 10 4 20 4S30 12 40 12' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M6 5.2C9 6.4 11 9.6 14 10.8' stroke='%23121a16' stroke-width='5'/%3E%3Cpath d='M5 4.9C9 6.2 11 9.8 15 11.1' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M26 5.2C29 6.4 31 9.6 34 10.8' stroke='%23121a16' stroke-width='5' transform='scale(1,-1) translate(0,-16)'/%3E%3Cpath d='M25 4.9C29 6.2 31 9.8 35 11.1' stroke='%23c9a45c' stroke-width='2' transform='scale(1,-1) translate(0,-16)'/%3E%3C/g%3E%3C/svg%3E") repeat-x center / 40px 16px; opacity: 0.55; }
+.page-title + .braid, .braid.under { margin: -6px 0 16px; }
+.gate .panel { position: relative; padding-top: 34px; }
+.gate .panel::before { content: ""; position: absolute; left: 24px; right: 24px; top: 12px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg fill='none' stroke-linecap='butt'%3E%3Cpath d='M0 4C10 4 10 12 20 12S30 4 40 4' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M0 12C10 12 10 4 20 4S30 12 40 12' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M6 5.2C9 6.4 11 9.6 14 10.8' stroke='%23121a16' stroke-width='5'/%3E%3Cpath d='M5 4.9C9 6.2 11 9.8 15 11.1' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M26 5.2C29 6.4 31 9.6 34 10.8' stroke='%23121a16' stroke-width='5' transform='scale(1,-1) translate(0,-16)'/%3E%3Cpath d='M25 4.9C29 6.2 31 9.8 35 11.1' stroke='%23c9a45c' stroke-width='2' transform='scale(1,-1) translate(0,-16)'/%3E%3C/g%3E%3C/svg%3E") repeat-x center / 40px 16px; opacity: 0.6; }
+.promo::after { content: ""; position: absolute; left: 20px; right: 20px; bottom: 10px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg fill='none' stroke-linecap='butt'%3E%3Cpath d='M0 4C10 4 10 12 20 12S30 4 40 4' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M0 12C10 12 10 4 20 4S30 12 40 12' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M6 5.2C9 6.4 11 9.6 14 10.8' stroke='%23121a16' stroke-width='5'/%3E%3Cpath d='M5 4.9C9 6.2 11 9.8 15 11.1' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M26 5.2C29 6.4 31 9.6 34 10.8' stroke='%23121a16' stroke-width='5' transform='scale(1,-1) translate(0,-16)'/%3E%3Cpath d='M25 4.9C29 6.2 31 9.8 35 11.1' stroke='%23c9a45c' stroke-width='2' transform='scale(1,-1) translate(0,-16)'/%3E%3C/g%3E%3C/svg%3E") repeat-x center / 40px 16px; opacity: 0.45; }
+.promo { padding-bottom: 34px; }
+.tabbar { border-top: 0; }
+.tabbar::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg fill='none' stroke-linecap='butt'%3E%3Cpath d='M0 4C10 4 10 12 20 12S30 4 40 4' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M0 12C10 12 10 4 20 4S30 12 40 12' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M6 5.2C9 6.4 11 9.6 14 10.8' stroke='%23121a16' stroke-width='5'/%3E%3Cpath d='M5 4.9C9 6.2 11 9.8 15 11.1' stroke='%23c9a45c' stroke-width='2'/%3E%3Cpath d='M26 5.2C29 6.4 31 9.6 34 10.8' stroke='%23121a16' stroke-width='5' transform='scale(1,-1) translate(0,-16)'/%3E%3Cpath d='M25 4.9C29 6.2 31 9.8 35 11.1' stroke='%23c9a45c' stroke-width='2' transform='scale(1,-1) translate(0,-16)'/%3E%3C/g%3E%3C/svg%3E") repeat-x center / 40px 16px; opacity: 0.35; pointer-events: none; }
+.card, .rowcard, .post, .event, .gcard, .menu, .stats div, .ptcard, .step, .people, .group, .book { border-color: color-mix(in oklch, var(--ember) 14%, var(--line)); }
+.sec-h h2::before { content: ""; display: inline-block; width: 8px; height: 8px; margin: 0 10px 2px 0; transform: rotate(45deg); border: 1.5px solid var(--ember); vertical-align: middle; }
+
+/* ---------- desktop block: the app is phone-only ---------- */
+.desk { display: none; }
+@media (hover: hover) and (pointer: fine) {
+  .stage { display: none !important; }
+  .desk { display: flex; min-height: 100%; align-items: center; justify-content: center; text-align: center; padding-block: 48px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); background: radial-gradient(50% 45% at 50% 40%, oklch(0.26 0.05 150 / 0.55), transparent 70%), var(--stage); }
+}
+.desk .in { max-width: 420px; display: grid; justify-items: center; gap: 14px; }
+.desk .k { width: 120px; }
+.desk .wm { margin: 18px -0.22em 0 0; font-size: 30px; font-weight: 400; letter-spacing: 0.22em; }
+.desk .tl { font-size: 13px; letter-spacing: 0.04em; color: var(--text-2); }
+.desk h1 { font-size: 22px; font-weight: 600; margin-top: 22px; }
+.desk p { color: var(--text-2); font-size: 15px; }
+.desk .qr { margin-top: 10px; padding: 14px; border-radius: 20px; background: var(--text); width: 188px; height: 188px; display: grid; place-items: center; }
+.desk .qr img, .desk .qr canvas { width: 160px !important; height: 160px !important; }
+.desk .link { display: flex; align-items: center; gap: 8px; margin-top: 6px; padding: 8px 8px 8px 16px; border-radius: 99px; border: 1px solid var(--line); background: var(--surface); font-size: 13px; color: var(--text-2); max-width: 100%; }
+.desk .link span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; user-select: all; }
+.desk .link button { height: 32px; padding: 0 14px; border-radius: 99px; background: var(--text); color: oklch(0.14 0.005 70); font-size: 13px; font-weight: 500; flex: none; }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="knot" viewBox="-290 -290 580 580"></symbol><symbol id="knot-icon" viewBox="-300 -300 600 600"></symbol></defs></svg>
+
+<div class="desk" role="main">
+  <div class="in">
+    <div class="k"><svg class="knot" viewBox="-290 -290 580 580" aria-label="Aether knot"><use href="#knot" x="-290" y="-290" width="580" height="580"/></svg></div>
+    <div class="wm">AETHER</div>
+    <div class="tl">BEYOND THE VISIBLE</div>
+    <h1>Aether lives on your phone</h1>
+    <p>It isn't available on desktop. Scan the code with your phone camera to open it.</p>
+    <div class="qr" id="qr" aria-label="QR code linking to the Aether app"></div>
+    <div class="link"><span id="applink">https://longevusmarcus.github.io/aether-celtic/</span><button id="copylink">Copy link</button></div>
+  </div>
+</div>
+
+<div class="stage">
+  <aside class="brief">
+    <span class="tag">Prototype · sample data</span>
+    <div class="wm">AETHER</div>
+    <p>Members-only app for Masha's community: lessons from the book, IRL challenges, a small Circle and limited gatherings.</p>
+    <ul>
+      <li>Tap Request an invite, then Preview as a member to take the 10-question reading.</li>
+      <li>Join a challenge and add proof to fill your knot.</li>
+      <li>Request a seat at a gathering.</li>
+    </ul>
+    <p>People, numbers and events are examples. Nothing is saved.</p>
+  </aside>
+  <div class="device"><div class="app" id="app">
+    <div class="statusbar"><span>9:41</span><span class="island"></span><span class="sys"><i data-lucide="signal" style="width:17px;height:17px"></i><i data-lucide="wifi" style="width:17px;height:17px"></i><span class="batt"><i></i></span></span></div>
+    <div id="view" class="view"></div>
+    <nav class="tabbar" id="tabbar" hidden aria-label="Main">
+      <button class="tab" data-tab="today" aria-label="Home"><i data-lucide="house"></i></button>
+      <button class="tab" data-tab="learn" aria-label="Learn"><i data-lucide="book-open"></i></button>
+      <button class="tab center" data-tab="challenges" aria-label="Challenges"><span class="fab"><svg class="fabknot" viewBox="-300 -300 600 600" aria-hidden="true"><use href="#knot-icon" x="-300" y="-300" width="600" height="600"/></svg></span></button>
+      <button class="tab" data-tab="circle" aria-label="Circle"><i data-lucide="message-circle"></i></button>
+      <button class="tab" data-tab="you" aria-label="Profile"><i data-lucide="user"></i></button>
+    </nav>
+    <div id="overlay"></div>
+    <div class="homebar"></div>
+  </div></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="https://unpkg.com/lucide@0.453.0/dist/umd/lucide.min.js"></script>
+<script>
+(function () {
+  "use strict";
+
+  /* ================= knot geometry, rendered once into <symbol id="knot"> ================= */
+  (function buildKnot() {
+    var A = 262, B = 132, S = 92, RC = 148, W = 27, EDGE = 6;
+    function vesica(rot) {
+      var h = (A + B) / 2, my = (B - A) / 2, R = (h * h + S * S) / (2 * S), phi = Math.asin(h / R), n = 200, pts = [], i, th;
+      for (i = 0; i <= n; i++) { th = -phi + 2 * phi * i / n; pts.push([-(R - S) + R * Math.cos(th), my + R * Math.sin(th)]); }
+      for (i = 1; i < n; i++) { th = phi - 2 * phi * i / n; pts.push([(R - S) - R * Math.cos(th), my + R * Math.sin(th)]); }
+      var c = Math.cos(rot), s = Math.sin(rot);
+      return pts.map(function (p) { return [p[0] * c - p[1] * s, p[0] * s + p[1] * c]; });
+    }
+    function ring() { var pts = [], n = 520; for (var i = 0; i < n; i++) { var t = 2 * Math.PI * i / n - Math.PI / 4 + 0.0137; pts.push([RC * Math.cos(t), RC * Math.sin(t)]); } return pts; }
+    var curves = [ring(), vesica(0), vesica(Math.PI / 2), vesica(Math.PI), vesica(3 * Math.PI / 2)];
+    var cum = curves.map(function (pts) { var L = [0]; for (var i = 1; i <= pts.length; i++) { var a = pts[i - 1], b = pts[i % pts.length]; L.push(L[i - 1] + Math.hypot(b[0] - a[0], b[1] - a[1])); } return L; });
+    function segX(p, p2, q, q2) {
+      var rx = p2[0] - p[0], ry = p2[1] - p[1], sx = q2[0] - q[0], sy = q2[1] - q[1], d = rx * sy - ry * sx;
+      if (Math.abs(d) < 1e-9) return null;
+      var qx = q[0] - p[0], qy = q[1] - p[1], t = (qx * sy - qy * sx) / d, u = (qx * ry - qy * rx) / d;
+      return (t < 0 || t >= 1 || u < 0 || u >= 1) ? null : [t, u];
+    }
+    var X = [], per = curves.map(function () { return []; });
+    for (var a = 0; a < curves.length; a++) for (var b = a + 1; b < curves.length; b++) {
+      var P = curves[a], Q = curves[b];
+      for (var i = 0; i < P.length; i++) {
+        var p = P[i], p2 = P[(i + 1) % P.length];
+        var x0 = Math.min(p[0], p2[0]), x1 = Math.max(p[0], p2[0]), y0 = Math.min(p[1], p2[1]), y1 = Math.max(p[1], p2[1]);
+        for (var j = 0; j < Q.length; j++) {
+          var q = Q[j], q2 = Q[(j + 1) % Q.length];
+          if (Math.max(q[0], q2[0]) < x0 || Math.min(q[0], q2[0]) > x1 || Math.max(q[1], q2[1]) < y0 || Math.min(q[1], q2[1]) > y1) continue;
+          var r = segX(p, p2, q, q2); if (!r) continue;
+          var id = X.length, sa = cum[a][i] + r[0] * (cum[a][i + 1] - cum[a][i]), sb = cum[b][j] + r[1] * (cum[b][j + 1] - cum[b][j]);
+          X.push({ a: a, b: b, sa: sa, sb: sb, over: null }); per[a].push({ id: id, s: sa }); per[b].push({ id: id, s: sb });
+        }
+      }
+    }
+    per.forEach(function (l) { l.sort(function (x, y) { return x.s - y.s; }); });
+    var done = {}, queue = [0], left = curves.length;
+    while (left > 0) {
+      if (!queue.length) for (var k = 0; k < curves.length; k++) if (!done[k]) { queue.push(k); break; }
+      var c = queue.shift(); if (done[c]) continue; done[c] = true; left--;
+      var list = per[c], ref = -1, refOver = true;
+      for (var m = 0; m < list.length; m++) { var cr = X[list[m].id]; if (cr.over !== null) { ref = m; refOver = cr.over === c; break; } }
+      if (ref < 0) { ref = 0; refOver = true; }
+      for (var m2 = 0; m2 < list.length; m2++) {
+        var x = X[list[m2].id], want = ((m2 - ref) % 2 === 0) ? refOver : !refOver, other = x.a === c ? x.b : x.a;
+        if (x.over === null) x.over = want ? c : other;
+        if (!done[other]) queue.push(other);
+      }
+    }
+    function d(pts, closed) { var s = "M" + pts[0][0].toFixed(1) + " " + pts[0][1].toFixed(1); for (var i = 1; i < pts.length; i++) s += "L" + pts[i][0].toFixed(1) + " " + pts[i][1].toFixed(1); return s + (closed ? "Z" : ""); }
+    function at(ci, s) {
+      var pts = curves[ci], L = cum[ci], T = L[L.length - 1]; s = ((s % T) + T) % T;
+      var lo = 0, hi = L.length - 1; while (hi - lo > 1) { var mid = (lo + hi) >> 1; if (L[mid] <= s) lo = mid; else hi = mid; }
+      var p = pts[lo], p2 = pts[(lo + 1) % pts.length], f = (s - L[lo]) / ((L[lo + 1] - L[lo]) || 1);
+      return [p[0] + (p2[0] - p[0]) * f, p[1] + (p2[1] - p[1]) * f];
+    }
+    var col = ["currentColor", "var(--k1)", "var(--k2)", "var(--k3)", "var(--k4)"];
+    // outline: hollow bands (outer = colour, inner = background). solid: filled bands with background gaps at crossings (small sizes).
+    function render(Wv, Ev, solid, maxHalf) {
+      function band(path, ci, open) {
+        var cap = open ? ' stroke-linecap="butt"' : "";
+        var a = solid ? "var(--knot-bg)" : col[ci], b = solid ? col[ci] : "var(--knot-bg)";
+        return '<path d="' + path + '" fill="none" style="stroke:' + a + '" stroke-width="' + Wv + '" stroke-linejoin="miter" stroke-miterlimit="40"' + cap + '/>' +
+               '<path d="' + path + '" fill="none" style="stroke:' + b + '" stroke-width="' + (Wv - 2 * Ev) + '" stroke-linejoin="miter" stroke-miterlimit="40"' + cap + '/>';
+      }
+      var body = "";
+      curves.forEach(function (pts, ci) { body += band(d(pts, true), ci, false); });
+      X.forEach(function (x, id) {
+        var c = x.over, s = c === x.a ? x.sa : x.sb, T = cum[c][cum[c].length - 1], dmin = Infinity;
+        per[c].forEach(function (o) { if (o.id === id) return; var dd = Math.abs(o.s - s); dd = Math.min(dd, T - dd); if (dd < dmin) dmin = dd; });
+        var half = Math.min(maxHalf, dmin * 0.48), pts = [];
+        for (var t = -half; t <= half + 0.01; t += half / 10) pts.push(at(c, s + t));
+        body += band(d(pts, false), c, true);
+      });
+      return body;
+    }
+    document.getElementById("knot").innerHTML = render(W, EDGE, false, 34);
+    document.getElementById("knot-icon").innerHTML = render(58, 13, true, 46);
+  })();
+  function KNOT(cls, style) { return '<svg class="knot ' + (cls || "") + '" style="' + (style || "") + '" viewBox="-290 -290 580 580" role="img" aria-label="Aether knot"><use href="#knot" x="-290" y="-290" width="580" height="580"/></svg>'; }
+
+  /* ================= data (sample) ================= */
+  var POINTS = {
+    spirit: { name: "Spirit", color: "var(--pt-spirit)", k: "--k1", icon: "sparkles" },
+    mind: { name: "Mind", color: "var(--pt-mind)", k: "--k2", icon: "brain" },
+    body: { name: "Body", color: "var(--pt-body)", k: "--k3", icon: "activity" },
+    shadow: { name: "Shadow", color: "var(--pt-shadow)", k: "--k4", icon: "moon" }
+  };
+  var ORDER = ["spirit", "mind", "body", "shadow"];
+  var GRADS = {
+    M: "linear-gradient(140deg, oklch(0.92 0.03 85), var(--ember))",
+    LV: "linear-gradient(140deg, var(--pt-body), oklch(0.55 0.08 30))",
+    TO: "linear-gradient(140deg, var(--pt-mind), oklch(0.50 0.04 230))",
+    AS: "linear-gradient(140deg, var(--pt-shadow), oklch(0.45 0.06 310))",
+    JR: "linear-gradient(140deg, var(--pt-spirit), oklch(0.60 0.07 70))",
+    AR: "linear-gradient(140deg, oklch(0.85 0.04 60), oklch(0.55 0.06 50))",
+    NK: "linear-gradient(140deg, oklch(0.80 0.05 150), oklch(0.45 0.05 170))"
+  };
+  function av(init, cls) { return '<span class="av ' + (cls || "") + '" style="--g:' + (GRADS[init] || GRADS.AR) + '">' + init + "</span>"; }
+
+  /* Onboarding questions built on Masha's video themes (transcripts file, 117 videos, May to Nov 2026). */
+  var QUESTIONS = [
+    { q: "Someone close to you is disappointed in a choice you made. You…", o: [["Hold the line and move on", "shadow"], ["Explain until they understand", "mind"], ["Go quiet and reset in your body", "body"], ["Ask what it's here to teach you", "spirit"]] },
+    { q: "You have a new idea. Who do you tell first?", o: [["Nobody. I just start", "body"], ["Someone smart enough to poke holes in it", "mind"], ["Nobody until it feels aligned", "spirit"], ["Nobody until it's undeniable", "shadow"]] },
+    { q: "Someone your age is living the life you want. Your first reaction?", o: [["Envy. I let it show me what I want", "shadow"], ["I study exactly how they did it", "mind"], ["It lights a fire. I get to work", "body"], ["Their path isn't mine", "spirit"]] },
+    { q: "Where are you with the 9-to-5?", o: [["Already building my own thing", "body"], ["Planning my exit on paper", "mind"], ["Waiting to find my purpose first", "spirit"], ["Staying, and quietly resenting it", "shadow"]] },
+    { q: "When you feel empty, what do you reach for?", o: [["Making something", "spirit"], ["A plan", "mind"], ["Movement", "body"], ["Something a little reckless", "shadow"]] },
+    { q: "Your friend group, honestly:", o: [["I've outgrown most of it", "shadow"], ["We talk about big ideas, then do nothing", "mind"], ["Fun, but nobody pushes me", "body"], ["Small, chosen and aligned", "spirit"]] },
+    { q: "What stops you from posting or launching something?", o: [["Nothing. I post anyway", "body"], ["It isn't perfect yet", "mind"], ["Waiting for the right moment", "spirit"], ["What people from my past will think", "shadow"]] },
+    { q: "When life goes wrong, your first thought is…", o: [["What did I do to create this?", "spirit"], ["Whose fault is this?", "shadow"], ["What's the fix?", "mind"], ["I need to get out and move", "body"]] },
+    { q: "How do you feel about “healing”?", o: [["I've done enough. Time to build", "body"], ["I'm still analysing my patterns", "mind"], ["It's part of my spiritual path", "spirit"], ["I'm tired of it. I want to want things again", "shadow"]] },
+    { q: "In five years, what do you want to be known for?", o: [["What I built", "body"], ["How I think", "mind"], ["Who I became", "spirit"], ["Refusing to shrink", "shadow"]] }
+  ];
+  var QUIET = {
+    spirit: { video: "The strength of your spirit determines what you achieve", path: "karma", line: "You act and you think. What's missing is the why underneath it." },
+    mind: { video: "Study yourself deeply to build confidence", path: "category", line: "You move on instinct. Knowing how you operate will make it land." },
+    body: { video: "Overthinking blocks self-actualization; trust feelings and body", path: "beauty", line: "You live in your head. Your work is to move what you know through your body." },
+    shadow: { video: "Learning to disappoint people is essential", path: "disappoint", line: "You keep the peace. Your work is to stop apologising for what you want." }
+  };
+  var PATHS = [
+    { id: "empty", pt: "spirit", title: "From Empty to Awake", n: 5, done: 3, x: "80%", y: "10%", lessons: ["The day I realised I was nobody", "Empty, even when everything looked right", "When I stopped trying to heal", "Generic advice is built for the average", "Your intensity is a driver"] },
+    { id: "shadow", pt: "shadow", title: "Your Shadow Is Your Power", n: 6, done: 2, x: "20%", y: "20%", lessons: ["Anger as information", "Envy points at desire", "Ruthlessness, used well", "Shame and the hidden self", "Integrating, not fixing", "The shadow at work"] },
+    { id: "doing", pt: "mind", title: "Stop Thinking, Start Doing", n: 4, done: 0, x: "70%", y: "70%", lessons: ["Overthinking is respectable stuckness", "The smallest real action", "Insight without action", "Momentum as medicine"] },
+    { id: "disappoint", pt: "shadow", title: "Learning to Disappoint People", n: 5, done: 1, x: "60%", y: "30%", lessons: ["Keeping everyone comfortable", "The first no", "Guilt is not a verdict", "Who is left when you stop pleasing", "Disappointment as freedom"] },
+    { id: "category", pt: "mind", title: "Who You Are Is Not a Category", n: 5, done: 1, x: "30%", y: "60%", lessons: ["Shy or outgoing, both", "Labels you inherited", "Cool, cringe and free", "Holding contradictions", "Choosing your next self"] },
+    { id: "beauty", pt: "body", title: "Beauty, the Body and Validation", n: 5, done: 0, x: "75%", y: "25%", lessons: ["Care as a spiritual act", "Validation and its price", "Energy that stops moving", "Your body as evidence", "Dressing the next self"] },
+    { id: "karma", pt: "spirit", title: "Karma, Ego and the Strength of Your Spirit", n: 6, done: 0, x: "40%", y: "15%", lessons: ["What karma is not", "The ego as a tool", "Talent is not enough", "The strength of your spirit", "Discipline as devotion", "Your next right action"] },
+    { id: "system", pt: "mind", title: "The System Is Not Coming to Save You", n: 4, done: 0, x: "85%", y: "60%", lessons: ["The safe path", "Waiting to be chosen", "Building your own structure", "Ambition without apology"] }
+  ];
+
+  var CHALLENGES = [
+    { id: "apology", pt: "shadow", type: "solo", title: "7 days without apologising for your ambition", days: 7, day: 4, joined: 18,
+      why: "“I stopped apologising for my ambition.” Masha, Before We Begin. For one week, say what you want at full size.",
+      steps: ["Notice every time you shrink a goal while saying it out loud.", "Say it again at full size.", "Log one line each night: what you said and how it landed."], proof: "One line per day", x: "25%", y: "30%" },
+    { id: "no", pt: "shadow", type: "solo", title: "Disappoint one person on purpose", joined: 41,
+      why: "Learning to disappoint people is one of the hardest and most useful skills there is. Practise it once, on something small.",
+      steps: ["Pick one request you'd normally say yes to out of guilt.", "Say no, kindly, without a long explanation.", "Write down what you feared and what actually happened."], proof: "One honest paragraph", x: "70%", y: "70%" },
+    { id: "make", pt: "spirit", type: "solo", title: "Make something before you consume anything", joined: 27,
+      why: "Feeling full comes from producing something, not from applause. For five mornings, create before you scroll.",
+      steps: ["Create before you open any app.", "Anything counts: a sketch, a paragraph, a voice note.", "Post one of them, unpolished."], proof: "Photo of what you made", x: "30%", y: "15%" },
+    { id: "office", op: "01", pt: "mind", type: "irl", title: "The Open Office", metric: "8 hours · 20 desks", seats: 20, left: 6, joined: 14, when: "Mon 23 Nov · 09:00 to 17:00", where: "A public square in central London. Exact spot shared 48h before",
+      why: "The 9-to-5 is ending. We hold a mirror up to it: same hours, same desks, same lunch break, out in the open. The difference is that every hour goes into something you own.",
+      steps: ["Bring a folding desk, a chair and the business you keep putting off.", "Work from 09:00 to 17:00 in public. Lunch at 12:30, like everyone else.", "At 17:00, each person reads out what they built that day to whoever stopped to watch."], proof: "Photo of your desk and what you shipped", x: "60%", y: "30%" },
+    { id: "hundred", op: "02", pt: "shadow", type: "irl", title: "100 No's", metric: "100 rejections · 12 hours", seats: 24, left: 9, joined: 15, when: "Sat 28 Nov · 09:00 to 21:00", where: "Central London, in teams of three",
+      why: "Most people would rather stay broke than be embarrassed. For one day the crew hunts rejection on purpose, until the word no loses its power over everyone in it.",
+      steps: ["Teams of three ask strangers and businesses for bold, harmless things: a meeting with the CEO, a free upgrade, a stage for five minutes.", "Every no is logged on the live counter. Yeses don't count.", "The day ends when the crew hits 100, not before."], proof: "Your team's best no", x: "25%", y: "30%" },
+    { id: "permission", op: "03", pt: "spirit", type: "irl", title: "The Permission Office", metric: "6 hours · 1 desk · unlimited stamps", seats: 10, left: 4, joined: 6, when: "Sun 6 Dec · 10:00 to 16:00", where: "Outside a major London station. Shared 48h before",
+      why: "A fake government desk that issues official permission slips to strangers: to quit, to start, to be too much. The joke is that nobody ever needed one.",
+      steps: ["Staff the desk in uniform: blazer, lanyard, rubber stamp.", "Ask passers-by what they're waiting for permission to do. Fill in the slip, stamp it, hand it over.", "Log every permission granted. Read the best ones out at closing time."], proof: "Photo of a slip you issued", x: "30%", y: "15%" },
+    { id: "boxes", op: "04", pt: "body", type: "irl", title: "Twelve Boxes", metric: "12 speakers · 3 minutes each · no notes", seats: 12, left: 3, joined: 9, when: "Sun 13 Dec · 11:00", where: "Speakers' Corner, Hyde Park, London",
+      why: "Fear of being seen limits how far you go. Twelve members on twelve crates in a row, each saying the thing they're most scared to say, to people who never asked to hear it.",
+      steps: ["Bring a crate. Stand in line with the other eleven.", "Speak for three minutes on what you're done pretending about. No notes, no phone.", "Nobody steps down early. The crowd decides who gets an encore."], proof: "A 10-second clip", x: "80%", y: "20%" },
+    { id: "blackout", op: "05", pt: "mind", type: "irl", title: "Signal Lost", metric: "48 hours offline · 1 sealed box", seats: 30, left: 12, joined: 18, when: "Fri 18 Dec, 18:00 to Sun 20 Dec, 18:00", where: "Opening and closing at the Aether house, London",
+      why: "Cheap dopamine keeps people busy and empty. The crew seals every phone in one box on Friday night and spends the weekend making things with their hands and minds.",
+      steps: ["Friday 18:00: phones go into the box in front of everyone. It's taped shut.", "Spend 48 hours making something real. Paper, paint, code on a borrowed laptop with no browser.", "Sunday 18:00: show what you made before the box is opened."], proof: "What you made, shown on Sunday", x: "70%", y: "70%" },
+    { id: "sell", pt: "mind", type: "irl", title: "Earn £50 from a stranger before sundown", joined: 21, when: "One day, sunrise to sunset", where: "Anywhere but your employer",
+      why: "The 9-to-5 is ending, and AI will expose people with nothing to offer. Prove in one day that you can create value with no boss and no permission.",
+      steps: ["Make or offer something you can deliver today: a service, a skill, a thing you made.", "Pitch it face to face to people you don't know. No friends, no family.", "Hit £50 before sunset, or write down exactly where it broke."], proof: "Photo of the sale and what you learned", x: "70%", y: "70%" },
+    { id: "alone", pt: "spirit", type: "irl", title: "Front table, alone, no phone", joined: 15, when: "Friday night", where: "The busiest restaurant you can get into",
+      why: "Standing alone is the biggest lever for success. If you can't sit with yourself in public, you'll keep needing a crowd to feel real.",
+      steps: ["Book a table for one at a packed place on a Friday night. Ask for the front.", "Phone off and in your bag the whole time.", "Order what you want, not what's sensible. Stay for at least an hour."], proof: "A photo of the empty chair across from you", x: "30%", y: "15%" },
+    { id: "endit", pt: "shadow", type: "irl", title: "End one thing in person", joined: 26, when: "Within 7 days",
+      where: "Face to face. Not by text",
+      why: "Learning to disappoint people is essential. Leave one thing you only stay in out of guilt, and say it to their face.",
+      steps: ["Name one commitment, group or role you've outgrown.", "Tell the person in person, in two sentences. No long explanation.", "Don't take it back within 48 hours."], proof: "One honest paragraph", x: "40%", y: "60%" },
+    { id: "keeper", pt: "body", type: "irl", title: "Lead an operation in your city", locked: true, level: 3, joined: 0, x: "50%", y: "50%" }
+  ];
+
+  var HOSTS = [
+    { init: "M", name: "Masha", role: "Founder", r: "5.0" },
+    { init: "LV", name: "Lena V.", role: "Empowerment", r: "4.9" },
+    { init: "TO", name: "Tom O.", role: "IQ × Consciousness", r: "4.8" },
+    { init: "NK", name: "Nia K.", role: "Self-actualization", r: "4.9" }
+  ];
+
+  var GATHERINGS = [
+    { id: "supper", d: "14", m: "Nov", day: "Sat · 19:30", city: "London", title: "The Empowered Self: dinner with Masha", host: "M", hostName: "Masha", place: "Private dining room, Clerkenwell", seats: 12, left: 4, tier: "Level 2+", pt: "shadow" },
+    { id: "iq", d: "19", m: "Nov", day: "Thu · 18:30", city: "London", title: "IQ × Consciousness: think with your whole self", host: "TO", hostName: "Tom O.", place: "Members' library, Bloomsbury", seats: 20, left: 9, tier: "All members", pt: "mind" },
+    { id: "nyc", d: "22", m: "Nov", day: "Sun · 11:00", city: "New York", title: "Self-Actualization Lab", host: "M", hostName: "Masha", place: "Venue shared 48h before", seats: 30, left: 0, tier: "Waitlist", pt: "spirit" },
+    { id: "retreat", d: "16", m: "Jan", day: "3 days", city: "Location sealed", title: "Winter Retreat: The Next Self", host: "M", hostName: "Masha", place: "16 members", seats: 16, left: 16, tier: "Keepers only", pt: "spirit", locked: true }
+  ];
+
+  var POSTS = [
+    { who: "LV", name: "Lena V.", ago: "2h", pt: "shadow", t: "Day 4 of no apologising. Said “I want to run my own studio” at dinner without laughing after it.", likes: 24, replies: 8 },
+    { who: "AS", name: "Ana S.", ago: "5h", pt: "body", t: "Applied for Op. 04, Twelve Boxes. If I get picked I'm speaking first, and I'm terrified.", likes: 15, replies: 11, img: true },
+    { who: "TO", name: "Tom O.", ago: "1d", pt: "shadow", t: "Said no to a favour I'd normally say yes to. The guilt I expected never showed up.", likes: 31, replies: 3 }
+  ];
+
+  /* ================= state ================= */
+  var S = {
+    tab: "today", q: 0, answers: [], scores: null,
+    joined: { apology: true }, proofed: {}, requested: {}, liked: {}, posts: POSTS.slice(), pathFilter: "all", chFilter: "all",
+    level: 2, streak: 9, proofs: 6, lessonsDone: 7
+  };
+  function scores() { return S.scores || (S.scores = { spirit: 0.55, mind: 0.45, body: 0.3, shadow: 0.7 }); }
+
+  var view = document.getElementById("view"), tabbar = document.getElementById("tabbar"), overlay = document.getElementById("overlay");
+  function icons() { if (window.lucide && lucide.createIcons) { try { lucide.createIcons(); } catch (e) {} } }
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function tag(pt, extra) { return '<span class="tag" style="--c:' + POINTS[pt].color + '"><i></i>' + POINTS[pt].name + (extra ? " · " + extra : "") + "</span>"; }
+  function art(pt, x, y, extra) { return '<div class="art ' + (extra || "") + '" style="--c:' + POINTS[pt].color + ";--x:" + (x || "75%") + ";--y:" + (y || "20%") + '">' + KNOT() + "</div>"; }
+  function knotStyle(sc) { return ORDER.map(function (k) { return POINTS[k].k + ":color-mix(in oklch, " + POINTS[k].color + " " + Math.round(25 + sc[k] * 75) + "%, var(--line))"; }).join(";"); }
+  function strongQuiet(sc) { var s = ORDER.slice().sort(function (a, b) { return sc[b] - sc[a]; }); return { strong: s[0], quiet: s[3] }; }
+  function back() { return '<button class="circbtn" data-back aria-label="Back"><i data-lucide="chevron-left"></i></button>'; }
+
+  function show(html, opts) {
+    opts = opts || {};
+    view.className = "view " + (opts.full ? "full " : "") + (opts.anim || "enter-up");
+    view.onpointerdown = view.onpointerup = null;
+    view.innerHTML = html;
+    view.scrollTop = 0;
+    tabbar.hidden = !!opts.full;
+    Array.prototype.forEach.call(tabbar.querySelectorAll(".tab"), function (t) { t.classList.toggle("on", t.dataset.tab === S.tab); });
+    icons(); bind();
+    if (opts.after) requestAnimationFrame(function () { requestAnimationFrame(opts.after); });
+  }
+
+  /* ================= gate ================= */
+  function gate() {
+    show(
+      '<div class="gate"><div class="glow"></div>' +
+        '<div class="knotwrap">' + KNOT() + "</div>" +
+        '<div class="wm">AETHER</div><div class="tl">BEYOND THE VISIBLE</div><div class="pl">Consciousness · Connection · Expansion</div>' +
+        '<div class="panel">' +
+          "<h2>Members only</h2><p>Aether is invite-only. Request an invite to join the waitlist.</p>" +
+          '<button class="btn" id="request">Request an invite</button>' +
+          '<div class="foot" style="justify-content:center"><span><span id="wait">0</span> on the waitlist</span></div>' +
+        "</div></div>", { full: true });
+    var w = document.getElementById("wait"), t0 = performance.now() + 3200;
+    (function tick(now) { var p = Math.min(1, Math.max(0, (now - t0) / 1200)); w.textContent = Math.round(1204 * (1 - Math.pow(1 - p, 3))).toLocaleString("en-GB"); if (p < 1 && document.body.contains(w)) requestAnimationFrame(tick); })(performance.now());
+    document.getElementById("request").addEventListener("click", function () {
+      sheet('<h2>Request received</h2><p>You\'re number 1,205 on the waitlist. Requests are reviewed every Sunday, and an invite from a member moves you to the front.</p><button class="btn" id="preview">Preview as a member</button>',
+        function (el) { el.querySelector("#preview").addEventListener("click", function () { closeSheet(); startReading(); }); });
+    });
+  }
+
+  /* ================= reading ================= */
+  function startReading() { S.q = 0; S.answers = []; reading("enter-right"); }
+  function reading(anim) {
+    var Q = QUESTIONS[S.q], bars = "";
+    for (var i = 0; i < QUESTIONS.length; i++) bars += '<i class="' + (i < S.q ? "on" : "") + '"></i>';
+    show(
+      '<div class="navbar">' + '<button class="circbtn" id="qback" aria-label="Back"><i data-lucide="chevron-left"></i></button><div class="stepbar">' + bars + '</div></div>' +
+      '<div class="q-anim"><p class="q-n">Question ' + (S.q + 1) + " of " + QUESTIONS.length + '</p><h1 class="q">' + esc(Q.q) + "</h1>" +
+      Q.o.map(function (o, i) { return '<button class="opt" data-i="' + i + '"><span class="radio"></span>' + esc(o[0]) + "</button>"; }).join("") +
+      '</div>',
+      { full: true, anim: anim, after: function () { var b = view.querySelectorAll(".stepbar i")[S.q]; if (b) b.classList.add("on"); } });
+    document.getElementById("qback").addEventListener("click", function () { if (S.q === 0) gate(); else { S.q--; S.answers.pop(); reading("enter-left"); } });
+    Array.prototype.forEach.call(view.querySelectorAll(".opt"), function (b) {
+      b.addEventListener("click", function () {
+        b.classList.add("sel"); S.answers[S.q] = Q.o[+b.dataset.i][1];
+        setTimeout(function () { if (S.q < QUESTIONS.length - 1) { S.q++; reading("enter-right"); } else result(); }, 260);
+      });
+    });
+  }
+  function result() {
+    var c = { spirit: 0, mind: 0, body: 0, shadow: 0 }; S.answers.forEach(function (a) { c[a]++; });
+    var sc = {}; ORDER.forEach(function (k) { sc[k] = Math.min(1, 0.15 + c[k] / 5); }); S.scores = sc;
+    var sq = strongQuiet(sc);
+    show(
+      '<div class="navbar"><span style="width:46px"></span><span class="t">Your reading</span><span style="width:46px"></span></div>' +
+      '<div class="result"><div class="knotwrap colored" id="rk">' + KNOT() + "</div>" +
+      '<h1 class="page-title" style="text-align:center;padding-top:0">Strong in <span style="color:' + POINTS[sq.strong].color + '">' + POINTS[sq.strong].name + '</span>,<br>quiet in <span style="color:' + POINTS[sq.quiet].color + '">' + POINTS[sq.quiet].name + "</span></h1>" +
+      '<div class="callout"><b>What to work on</b><span>' + QUIET[sq.quiet].line + '</span><span class="meta"><i data-lucide="play-circle"></i>Watch first: ' + esc(QUIET[sq.quiet].video) + "</span></div>" +
+      (function () { var p = PATHS.filter(function (x) { return x.id === QUIET[sq.quiet].path; })[0]; return '<button class="rowcard" style="margin-top:10px" id="startpath">' + art(p.pt, p.x, p.y, "thumb") + '<div class="txt"><span class="meta">Start here</span><span class="tt">' + esc(p.title) + '</span><span class="meta">' + p.n + ' lessons from the book</span></div><i data-lucide="chevron-right" class="chev"></i></button>'; })() +
+      '<div class="pts" style="margin-top:12px">' + ORDER.map(function (k) { return '<div class="ptcard" style="--c:' + POINTS[k].color + '"><div class="top"><b>' + POINTS[k].name + "</b><span>" + Math.round(sc[k] * 100) + '</span></div><div class="prog"><span style="width:0" data-w="' + Math.round(sc[k] * 100) + '"></span></div></div>'; }).join("") + "</div>" +
+      '<div style="margin-top:22px"><button class="btn" id="enter">Enter Aether</button></div></div>',
+      { full: true, anim: "enter-right", after: function () {
+        var k = view.querySelector("#rk .knot"); if (!k) return; k.setAttribute("style", ORDER.map(function (x) { return POINTS[x].k + ":var(--line)"; }).join(";"));
+        requestAnimationFrame(function () { k.setAttribute("style", knotStyle(sc)); });
+        Array.prototype.forEach.call(view.querySelectorAll("[data-w]"), function (b) { b.style.width = b.dataset.w + "%"; });
+      } });
+    document.getElementById("enter").addEventListener("click", function () { S.tab = "today"; route(); });
+    document.getElementById("startpath").addEventListener("click", function () { S.tab = "learn"; stack = ["learn"]; pathDetail(QUIET[sq.quiet].path); });
+  }
+
+  /* ================= tabs ================= */
+  function route(anim) { ({ today: today, learn: learn, challenges: challenges, circle: circle, you: you })[S.tab](anim); }
+
+  function today(anim) {
+    var sc = scores(), ch = CHALLENGES[2], g = GATHERINGS[0], p = PATHS[0];
+    var line = "Insight without action is just entertainment.";
+    show(
+      '<div class="bg-knot">' + KNOT() + "</div>" +
+      '<div class="hdr">' + av("AR") + '<div class="who"><div class="hi">Good evening</div><div class="nm">Alex Reid</div></div><button class="circbtn" id="notif" aria-label="Notifications"><i data-lucide="bell"></i><span class="dot"></span></button></div>' +
+      '<label class="search"><i data-lucide="search"></i><input placeholder="Search lessons, challenges, people" aria-label="Search"></label>' +
+      '<div class="shortcuts">' + ORDER.map(function (k) { return '<button class="sc" data-filter="' + k + '" style="--c:' + POINTS[k].color + '"><span class="ic"><i data-lucide="' + POINTS[k].icon + '"></i></span>' + POINTS[k].name + "</button>"; }).join("") +
+        '<button class="sc" data-go="gatherings" style="--c:var(--ember)"><span class="ic"><i data-lucide="map-pin"></i></span>Events</button>' +
+        '<button class="sc" data-tabgo="circle" style="--c:var(--text)"><span class="ic"><i data-lucide="users"></i></span>Circle</button></div>' +
+      '<div class="promo"><div class="art-knot">' + KNOT() + '</div><h3>Go beyond the visible</h3><p>Reach Keeper level to host gatherings and join the Winter Retreat.</p><button class="pill" data-tabgo="you">See your progress <i data-lucide="arrow-right" style="width:16px;height:16px"></i></button></div>' +
+      '<div class="sec-h"><h2>From the book</h2><button data-book>Contents</button></div>' + bookCard() +
+      '<div class="sec-h"><h2>Hosts this month</h2><button data-go="gatherings">See all</button></div>' +
+      '<div class="carousel">' + HOSTS.map(function (h) { return '<button class="host" data-go="gatherings">' + av(h.init) + '<span class="n">' + h.name + '</span><span class="meta">' + h.role + '</span><span class="r"><i data-lucide="star"></i>' + h.r + "</span></button>"; }).join("") + "</div>" +
+      '<div class="sec-h"><h2>Today\'s line</h2></div>' +
+      '<div class="line-card"><p class="q">' + line.split(" ").map(function (w, i) { return '<span style="animation-delay:' + (i * 90) + 'ms">' + w + "</span>"; }).join(" ") + '</p><div class="by">' + av("M", "xs") + "Masha · from the book</div></div>" +
+      '<div class="sec-h"><h2>Today\'s challenge</h2><button data-tabgo="challenges">See all</button></div>' +
+      '<button class="card feature" data-ch="' + ch.id + '">' + art(ch.pt, ch.x, ch.y).replace("</div>", '<span class="badge">' + tag(ch.pt, "Solo") + "</span></div>") + '<div class="body"><h3>' + esc(ch.title) + '</h3><div class="meta"><i data-lucide="users"></i>' + ch.joined + " members this week</div></div></button>" +
+      '<div class="sec-h"><h2>Continue learning</h2><button data-tabgo="learn">See all</button></div>' +
+      '<button class="rowcard" data-path="' + p.id + '">' + art(p.pt, p.x, p.y, "thumb") + '<div class="txt"><span class="tt">' + esc(p.lessons[p.done]) + '</span><span class="meta">' + p.title + '</span><div class="prog"><span style="width:' + (p.done / p.n * 100) + '%"></span></div></div><i data-lucide="chevron-right" class="chev"></i></button>' +
+      '<div class="sec-h"><h2>Next gathering</h2><button data-go="gatherings">See all</button></div>' + eventCard(g),
+      { anim: anim });
+    document.getElementById("notif").addEventListener("click", function () { toast("Lena replied to your post."); });
+  }
+
+  function learn(anim) {
+    var f = S.pathFilter, list = PATHS.filter(function (p) { return f === "all" || p.pt === f; }), cont = PATHS[1];
+    show(
+      '<h1 class="page-title">Learn</h1><div class="braid"></div>' +
+      '<label class="search"><i data-lucide="search"></i><input placeholder="Search lessons" aria-label="Search lessons"></label>' +
+      '<div class="chips"><button class="chip' + (f === "all" ? " on" : "") + '" data-f="all">All</button>' +
+        ORDER.map(function (k) { return '<button class="chip' + (f === k ? " on" : "") + '" data-f="' + k + '" style="--c:' + POINTS[k].color + '"><i></i>' + POINTS[k].name + "</button>"; }).join("") + "</div>" +
+      (f === "all" ? '<div style="margin-top:18px">' + bookCard() + "</div>" : "") +
+      (f === "all" ? '<div class="sec-h"><h2>Pick up where you left off</h2></div><button class="card feature" data-path="' + cont.id + '">' + art(cont.pt, cont.x, cont.y).replace("</div>", '<span class="badge">' + tag(cont.pt, "Lesson " + (cont.done + 1) + " of " + cont.n) + "</span></div>") + '<div class="body"><h3>' + esc(cont.lessons[cont.done]) + '</h3><div class="meta">' + cont.title + ' · 6 min</div><div class="prog" style="margin-top:6px"><span style="width:' + (cont.done / cont.n * 100) + '%"></span></div></div></button>' : "") +
+      '<div class="sec-h"><h2>' + (f === "all" ? "All paths" : POINTS[f].name + " paths") + "</h2><span class='meta'>" + list.length + "</span></div>" +
+      '<div class="list">' + list.map(function (p) {
+        return '<button class="rowcard" data-path="' + p.id + '">' + art(p.pt, p.x, p.y, "thumb") + '<div class="txt"><span class="tt">' + esc(p.title) + '</span><span class="meta">' + POINTS[p.pt].name + " · " + p.n + " lessons" + (p.done ? " · " + Math.round(p.done / p.n * 100) + "%" : "") + '</span></div><i data-lucide="chevron-right" class="chev"></i></button>';
+      }).join("") + "</div>",
+      { anim: anim });
+    Array.prototype.forEach.call(view.querySelectorAll("[data-f]"), function (b) { b.addEventListener("click", function () { S.pathFilter = b.dataset.f; learn(); }); });
+  }
+
+  function pathDetail(id) {
+    var p = PATHS.filter(function (x) { return x.id === id; })[0], ch = CHALLENGES.filter(function (c) { return c.pt === p.pt && !c.locked; })[0];
+    show(
+      '<div class="hero">' + art(p.pt, p.x, p.y).replace('class="art "', 'class="art" style="position:absolute;inset:0;--c:' + POINTS[p.pt].color + ";--x:" + p.x + ";--y:" + p.y + '"') + '<div class="bar">' + back() + '<button class="circbtn" aria-label="Share"><i data-lucide="share-2"></i></button></div></div>' +
+      '<h1 class="detail-title">' + esc(p.title) + "</h1>" +
+      '<div class="facts">' + tag(p.pt) + '<span class="tag"><i data-lucide="book-open"></i>' + p.n + ' lessons</span><span class="tag"><i data-lucide="clock"></i>' + p.n * 5 + " min</span></div>" +
+      '<div style="margin-top:18px"><button class="btn" id="startlesson"><i data-lucide="play"></i>' + (p.done ? "Continue lesson " + (p.done + 1) : "Start path") + "</button></div>" +
+      '<div class="sec-h"><h2>Lessons</h2><span class="meta">' + p.done + " of " + p.n + " done</span></div>" +
+      "<div>" + p.lessons.map(function (l, i) {
+        var st = i < p.done ? "done" : i === p.done ? "next" : "";
+        return '<div class="lesson ' + st + '"><span class="play"><i data-lucide="' + (st === "done" ? "check" : st === "next" ? "play" : "lock") + '"></i></span><div class="txt"><div class="lt">' + esc(l) + '</div><div class="ld">' + (i % 2 ? "Read · 4 min" : "Listen · 6 min") + "</div></div></div>";
+      }).join("") + "</div>" +
+      (ch ? '<div class="sec-h"><h2>Put it into practice</h2></div><button class="rowcard" data-ch="' + ch.id + '">' + art(ch.pt, ch.x, ch.y, "thumb") + '<div class="txt"><span class="tt">' + esc(ch.title) + '</span><span class="meta">' + (ch.type === "irl" ? "IRL" : "Solo") + " · " + ch.joined + ' joined</span></div><i data-lucide="chevron-right" class="chev"></i></button>' : ""),
+      { anim: "enter-right" });
+    document.getElementById("startlesson").addEventListener("click", function () { toast("Playing: " + p.lessons[Math.min(p.done, p.n - 1)]); });
+  }
+
+  function challenges(anim) {
+    var f = S.chFilter, vis = CHALLENGES.filter(function (c) { return f === "all" || c.type === f; });
+    var opsl = vis.filter(function (c) { return c.op && !c.locked; });
+    var active = vis.filter(function (c) { return S.joined[c.id] && !c.locked && !c.op; }), open = vis.filter(function (c) { return !S.joined[c.id] && !c.locked && !c.op; }), locked = vis.filter(function (c) { return c.locked; });
+    function row(c) {
+      return '<button class="rowcard" data-ch="' + c.id + '"' + (c.locked ? ' style="opacity:.55"' : "") + ">" + art(c.pt, c.x, c.y, "thumb") + '<div class="txt"><span class="tt">' + esc(c.title) + '</span><span class="meta">' +
+        (c.locked ? '<i data-lucide="lock"></i>Unlocks at Keeper level' : POINTS[c.pt].name + " · " + (c.type === "irl" ? "IRL" : "Solo") + " · " + (c.joined + (S.joined[c.id] && c.id !== "apology" ? 1 : 0)) + " joined") +
+        "</span>" + (S.proofed[c.id] ? '<span class="meta" style="color:var(--ember)"><i data-lucide="check"></i>Proof shared</span>' : "") + '</div><i data-lucide="chevron-right" class="chev"></i></button>';
+    }
+    function opcard(c) {
+      var ap = !!S.joined[c.id];
+      return '<button class="card opcard" data-ch="' + c.id + '">' + art(c.pt, c.x, c.y).replace("</div>", '<span class="opno">OP. ' + c.op + '</span><span class="badge" style="left:auto;right:12px">' + tag(c.pt) + "</span></div>") +
+        '<div class="body"><h3>' + esc(c.title) + '</h3><div class="meta"><i data-lucide="activity"></i>' + c.metric + '</div><div class="meta"><i data-lucide="calendar"></i>' + c.when + '</div><div class="row" style="margin-top:6px"><span class="tag" style="--c:var(--ember)">' + (ap ? "Applied" : c.left + " of " + c.seats + " places left") + '</span><span class="meta">' + (c.joined + (ap ? 1 : 0)) + " applied</span></div></div></button>";
+    }
+    var a = active[0];
+    show(
+      '<h1 class="page-title">Challenges</h1><div class="braid"></div>' +
+      '<div class="seg">' + [["all", "All"], ["solo", "Solo"], ["irl", "IRL"]].map(function (x) { return '<button class="' + (f === x[0] ? "on" : "") + '" data-cf="' + x[0] + '">' + x[1] + "</button>"; }).join("") + "</div>" +
+      (a ? '<div class="sec-h"><h2>In progress</h2></div><button class="card feature" data-ch="' + a.id + '">' + art(a.pt, a.x, a.y).replace("</div>", '<span class="badge">' + tag(a.pt, a.days ? "Day " + a.day + " of " + a.days : (a.type === "irl" ? "IRL" : "Solo")) + "</span></div>") + '<div class="body"><h3>' + esc(a.title) + "</h3>" + (a.days ? '<div class="prog" style="margin-top:6px"><span style="width:' + (a.day / a.days * 100) + '%"></span></div>' : '<div class="meta">' + (S.proofed[a.id] ? "Proof shared" : "Add proof to finish") + "</div>") + "</div></button>" + (active.length > 1 ? '<div class="list" style="margin-top:10px">' + active.slice(1).map(row).join("") + "</div>" : "") : "") +
+      (opsl.length ? '<div class="sec-h"><h2>Operations</h2><span class="meta">' + opsl.length + '</span></div><p class="meta" style="margin:-6px 0 12px">Absurd group projects, in public. Limited crew. Apply to join.</p><div class="list">' + opsl.map(opcard).join("") + "</div>" : "") +
+      (open.length ? '<div class="sec-h"><h2>Open to join</h2><span class="meta">' + open.length + '</span></div><div class="list">' + open.map(row).join("") + "</div>" : "") +
+      (locked.length ? '<div class="sec-h"><h2>Locked</h2></div><div class="list">' + locked.map(row).join("") + "</div>" : ""),
+      { anim: anim });
+    Array.prototype.forEach.call(view.querySelectorAll("[data-cf]"), function (b) { b.addEventListener("click", function () { S.chFilter = b.dataset.cf; challenges(); }); });
+  }
+
+  function challengeDetail(id) {
+    var c = CHALLENGES.filter(function (x) { return x.id === id; })[0];
+    if (c.locked) { toast("Reach Keeper level to lead an operation."); return; }
+    var joined = !!S.joined[c.id], proofed = !!S.proofed[c.id], count = c.joined + (joined && c.id !== "apology" ? 1 : 0);
+    show(
+      '<div class="hero"><div class="art" style="position:absolute;inset:0;--c:' + POINTS[c.pt].color + ";--x:" + c.x + ";--y:" + c.y + '">' + KNOT() + '</div><div class="bar">' + back() + '<button class="circbtn" aria-label="Share"><i data-lucide="share-2"></i></button></div></div>' +
+      '<h1 class="detail-title">' + esc(c.title) + "</h1>" +
+      '<div class="facts">' + tag(c.pt) + '<span class="tag"><i data-lucide="' + (c.type === "irl" ? "map-pin" : "user") + '"></i>' + (c.type === "irl" ? "In person" : "Solo") + "</span>" +
+        (c.op ? '<span class="tag" style="--c:var(--ember)">OP. ' + c.op + "</span>" : "") + (c.metric ? '<span class="tag"><i data-lucide="activity"></i>' + c.metric + "</span>" : "") +
+        (c.when ? '<span class="tag"><i data-lucide="calendar"></i>' + c.when + "</span>" : "") + (c.days ? '<span class="tag"><i data-lucide="clock"></i>' + c.days + " days</span>" : "") + "</div>" +
+      (c.where ? '<p class="meta" style="margin-top:12px"><i data-lucide="map-pin"></i>' + c.where + "</p>" : "") +
+      '<div class="sec-h"><h2>About</h2></div><p class="para">' + esc(c.why) + "</p>" +
+      '<div class="sec-h"><h2>How it works</h2></div><div class="steps">' + c.steps.map(function (s, i) { return '<div class="step"><span class="n">' + (i + 1) + "</span><span>" + esc(s) + "</span></div>"; }).join("") + "</div>" +
+      '<div class="sec-h"><h2>Who\'s in</h2></div><div class="people"><div class="faces">' + ["LV", "TO", "AS", "JR"].map(function (f) { return av(f, "sm"); }).join("") + '</div><span class="meta">' + count + " members · proof: " + c.proof.toLowerCase() + "</span></div>" +
+      (c.op ? '<div class="sec-h"><h2>Crew</h2></div><div class="people"><span class="meta">' + (c.left - (joined ? 1 : 0)) + " of " + c.seats + ' places left. The crew is picked from applicants who have shared proof before.</span></div>' : "") +
+      '<div class="sticky-cta">' + (c.op ? (joined ? '<button class="btn done" disabled><i data-lucide="check"></i>Applied · decision by Thursday</button>' : '<button class="btn ember" id="join">Apply to join the crew</button>') : proofed ? '<button class="btn done" disabled><i data-lucide="check"></i>Proof shared</button>' : joined ? '<button class="btn ember" id="proof"><i data-lucide="camera"></i>Add proof</button>' : '<button class="btn" id="join">Join challenge</button>') + "</div>",
+      { anim: "enter-right" });
+    var j = document.getElementById("join");
+    if (j) j.addEventListener("click", function () { S.joined[c.id] = true; challengeDetail(c.id); toast(c.op ? "Application sent. Decision by Thursday." : "You're in. Your Circle can see it."); });
+    var p = document.getElementById("proof");
+    if (p) p.addEventListener("click", function () { proofSheet(c); });
+  }
+
+  function proofSheet(c) {
+    sheet('<h2>Add proof</h2><p>' + esc(c.title) + '</p><button class="photo" id="photo"><span><i data-lucide="camera"></i><br>Add a photo</span></button><textarea id="pline" placeholder="One honest line"></textarea><button class="btn" id="submit">Share with your Circle</button>',
+      function (el) {
+        el.querySelector("#photo").addEventListener("click", function () { this.classList.add("has"); this.style.background = "radial-gradient(70% 90% at 70% 30%, color-mix(in oklch, " + POINTS[c.pt].color + " 70%, transparent), transparent 70%), var(--surface-2)"; this.innerHTML = "<span>Photo added</span>"; });
+        el.querySelector("#submit").addEventListener("click", function () {
+          S.proofed[c.id] = true; S.proofs++;
+          var sc = scores(); sc[c.pt] = Math.min(1, sc[c.pt] + 0.15);
+          S.posts.unshift({ who: "AR", name: "You", ago: "now", pt: c.pt, t: (el.querySelector("#pline").value.trim() || "Done: " + c.title), likes: 0, replies: 0, img: true });
+          closeSheet(); challengeDetail(c.id);
+          toast(POINTS[c.pt].name + " point filled. Shared with your Circle.");
+        });
+      });
+  }
+
+  function circle(anim) {
+    show(
+      '<div class="navbar" style="padding-top:8px"><h1 class="page-title" style="padding:0">Circle</h1><button class="circbtn" id="post" aria-label="New post"><i data-lucide="plus"></i></button></div><div class="braid under"></div>' +
+      '<div class="group">' + av("LV") + '<div class="txt"><div class="t">Circle of Embers</div><div class="meta">12 members · London</div></div><div class="faces">' + ["TO", "AS", "JR"].map(function (f) { return av(f, "sm"); }).join("") + "</div></div>" +
+      '<button class="rowcard" data-go="gatherings" style="margin-top:10px"><span class="thumb" style="width:48px;height:48px;border-radius:14px;background:var(--surface-2);display:grid;place-items:center;color:var(--ember)"><i data-lucide="calendar"></i></span><div class="txt"><span class="tt">4 gatherings coming up</span><span class="meta">1 near you this week</span></div><i data-lucide="chevron-right" class="chev"></i></button>' +
+      '<div class="sec-h"><h2>Latest</h2></div><div class="list">' + S.posts.map(function (p, i) {
+        var liked = !!S.liked[i];
+        return '<div class="post"><div class="head">' + av(p.who, "sm") + '<div><div class="nm">' + p.name + '</div><div class="tm">' + p.ago + "</div></div>" + tag(p.pt) + '</div><p class="bd">' + esc(p.t) + "</p>" +
+          (p.img ? art(p.pt, "70%", "30%", "proofimg") : "") +
+          '<div class="acts"><button data-like="' + i + '" class="' + (liked ? "liked" : "") + '"><i data-lucide="heart"></i>' + (p.likes + (liked ? 1 : 0)) + '</button><button><i data-lucide="message-circle"></i>' + p.replies + "</button></div></div>";
+      }).join("") + "</div>",
+      { anim: anim });
+    Array.prototype.forEach.call(view.querySelectorAll("[data-like]"), function (b) { b.addEventListener("click", function () { S.liked[b.dataset.like] = !S.liked[b.dataset.like]; var y = view.scrollTop; circle("none"); view.scrollTop = y; }); });
+    document.getElementById("post").addEventListener("click", function () {
+      sheet('<h2>New post</h2><p>Visible to Circle of Embers only.</p><textarea id="ptext" placeholder="What are you done waiting for?"></textarea><div class="err" id="perr" style="padding-left:4px"></div><button class="btn" id="psend">Post</button>', function (el) {
+        el.querySelector("#psend").addEventListener("click", function () {
+          var v = el.querySelector("#ptext").value.trim();
+          if (!v) { el.querySelector("#perr").textContent = "Write something first."; return; }
+          S.posts.unshift({ who: "AR", name: "You", ago: "now", pt: "spirit", t: v, likes: 0, replies: 0 });
+          closeSheet(); circle(); toast("Posted to your Circle.");
+        });
+      });
+    });
+  }
+
+  function eventCard(g) {
+    var req = !!S.requested[g.id], left = g.left - (req && g.left > 0 ? 1 : 0);
+    var btn = g.locked ? '<button class="btn ghost" disabled><i data-lucide="lock"></i>Keepers</button>'
+      : req ? '<button class="btn done" disabled><i data-lucide="check"></i>' + (g.left === 0 ? "Waitlisted" : "Requested") + "</button>"
+      : '<button class="btn' + (g.left === 0 ? " ghost" : "") + '" data-req="' + g.id + '">' + (g.left === 0 ? "Join waitlist" : "Request seat") + "</button>";
+    return '<div class="event' + (g.locked ? " locked" : "") + '"><div class="art" style="--c:' + POINTS[g.pt].color + '">' + KNOT() + '<div class="datebox"><b>' + g.d + "</b><span>" + g.m + '</span></div><span class="tag seatpill seats" id="s-' + g.id + '">' + (g.locked ? "Keepers only" : left > 0 ? left + " of " + g.seats + " left" : "Full") + "</span></div>" +
+      '<div class="body"><h3>' + g.title + '</h3><div class="meta"><i data-lucide="clock"></i>' + g.day + ' · <i data-lucide="map-pin"></i>' + g.city + '</div><div class="meta">' + g.place + '</div><div class="foot"><div class="meta">' + av(g.host, "xs") + g.hostName + " · " + g.tier + "</div>" + btn + "</div></div></div>";
+  }
+
+  function gatherings() {
+    show(
+      '<div class="navbar">' + back() + '<span class="t">Gatherings</span><button class="circbtn" aria-label="Filter"><i data-lucide="sliders-horizontal"></i></button></div>' +
+      '<div class="chips" style="margin-top:0"><button class="chip on">All cities</button><button class="chip">London</button><button class="chip">New York</button><button class="chip">Berlin</button></div>' +
+      '<p class="meta" style="margin:14px 0 4px">Seats go to members who show up: lessons finished, proof shared.</p>' +
+      '<div class="list" style="margin-top:12px">' + GATHERINGS.map(eventCard).join("") + "</div>",
+      { anim: "enter-right" });
+  }
+
+  function you(anim) {
+    var sc = scores();
+    show(
+      '<div class="navbar"><span style="width:46px"></span><span class="t">Profile</span><button class="circbtn" aria-label="Settings"><i data-lucide="settings"></i></button></div>' +
+      '<div class="prof">' + av("AR", "lg") + '<div class="nm">Alex Reid</div><span class="lvl">Level ' + S.level + ' · Initiate</span><p class="meta" style="margin-top:8px">3 proofs and 1 gathering to reach Keeper</p></div>' +
+      '<div class="stats"><div><b>' + S.streak + "</b><span>Day streak</span></div><div><b>" + S.proofs + "</b><span>Proofs</span></div><div><b>" + S.lessonsDone + "</b><span>Lessons</span></div></div>" +
+      '<div class="sec-h"><h2>Your knot</h2><button id="redo">Retake reading</button></div>' +
+      '<div class="knotcard"><div class="k">' + KNOT("", knotStyle(sc)) + '</div><div class="bars">' + ORDER.map(function (k) { return '<div class="b" style="--c:' + POINTS[k].color + '"><div class="lbl">' + POINTS[k].name + "<span>" + Math.round(sc[k] * 100) + '</span></div><div class="prog"><span style="width:' + Math.round(sc[k] * 100) + '%"></span></div></div>'; }).join("") + "</div></div>" +
+      '<div class="sec-h"><h2>Account</h2></div><div class="menu">' +
+        '<button data-dl><span class="mi"><i data-lucide="download"></i></span><span class="txt">Download the book</span><span class="val">PDF</span></button>' +
+        '<button id="invite"><span class="mi"><i data-lucide="gift"></i></span><span class="txt">Invite someone</span><span class="val">2 left</span></button>' +
+        '<button data-go="gatherings"><span class="mi"><i data-lucide="ticket"></i></span><span class="txt">My gatherings</span><span class="val">1 attended</span></button>' +
+        '<button><span class="mi"><i data-lucide="bell"></i></span><span class="txt">Notifications</span><i data-lucide="chevron-right" class="chev" style="color:var(--text-3)"></i></button>' +
+        '<button><span class="mi"><i data-lucide="shield"></i></span><span class="txt">Privacy</span><i data-lucide="chevron-right" class="chev" style="color:var(--text-3)"></i></button>' +
+      "</div>",
+      { anim: anim });
+    document.getElementById("redo").addEventListener("click", startReading);
+    document.getElementById("invite").addEventListener("click", function () {
+      sheet('<h2>Invite someone</h2><p>Invites are rare on purpose. Send one to someone who is ready to act.</p><div class="input" style="margin:0"><input readonly value="AETHER-AR-7Q2" aria-label="Invite code"><button id="copy" aria-label="Copy code"><i data-lucide="copy"></i></button></div><p class="meta">Sample code</p>', function (el) {
+        el.querySelector("#copy").addEventListener("click", function () { try { navigator.clipboard.writeText("AETHER-AR-7Q2").then(function () { toast("Invite code copied."); }, function () { el.querySelector("input").select(); }); } catch (e) { el.querySelector("input").select(); } });
+      });
+    });
+  }
+
+
+  /* ================= the book ================= */
+  var BOOK = { file: "ebook/stop-asking-for-permission-masha.pdf", name: "Stop Asking for Permission - Masha.pdf", cover: "ebook/cover.jpg", pages: 63,
+    toc: [["Before We Begin", 5], ["My Story: From Empty to Awake", 7], ["Who You Are Is Not a Category", 12], ["Learning to Disappoint People", 21], ["Your Shadow Is Your Power", 29], ["Stop Thinking, Start Doing", 37], ["Karma, Ego and the Strength of Your Spirit", 43], ["Beauty, the Body and Validation", 49], ["The System Is Not Coming to Save You", 55], ["A Last Word", 62]] };
+  function bookCard() {
+    return '<div class="book"><img src="' + BOOK.cover + '" alt="Cover of Stop Asking for Permission by Masha"><div class="txt"><span class="meta">The book · free for members</span><span class="tt">Stop Asking for Permission</span><span class="meta">Masha · ' + BOOK.pages + ' pages · PDF</span><div class="acts"><button class="btn" data-dl><i data-lucide="download"></i>Download</button><button class="btn ghost" data-book>Contents</button></div></div></div>';
+  }
+  function bookDetail() {
+    show(
+      '<div class="navbar">' + back() + '<span class="t">The book</span><span style="width:46px"></span></div>' +
+      '<div class="bookhero"><img src="' + BOOK.cover + '" alt="Cover of Stop Asking for Permission by Masha"><div><h1 class="detail-title" style="margin:6px 0 0">Stop Asking for Permission</h1><p class="meta" style="justify-content:center;margin-top:6px">Lessons on ambition, identity and becoming · Masha</p></div></div>' +
+      '<div style="margin-top:20px;display:grid;gap:10px"><button class="btn ember" data-dl><i data-lucide="download"></i>Download PDF</button></div>' +
+      '<div class="sec-h"><h2>Contents</h2><span class="meta">' + BOOK.pages + ' pages</span></div><div class="toc">' + BOOK.toc.map(function (t) { return "<div>" + esc(t[0]) + "<span>" + t[1] + "</span></div>"; }).join("") + "</div>" +
+      '<p class="meta" style="margin-top:16px">Each chapter is also a learning path in the Learn tab.</p>',
+      { anim: "enter-right" });
+  }
+  var downloading = false;
+  async function downloadBook() {
+    if (downloading) return; downloading = true;
+    try {
+      var dl = (window.claude && window.claude.use) ? await window.claude.use("downloads") : null;
+      if (!dl) { var a = document.createElement("a"); a.href = BOOK.file; a.download = BOOK.name; document.body.appendChild(a); a.click(); a.remove(); toast("Downloading Stop Asking for Permission."); return; }
+      toast("Preparing your copy…");
+      var res = await fetch(BOOK.file); if (!res.ok) throw { code: "fetch" };
+      var blob = await res.blob();
+      await dl.save({ filename: BOOK.name, data: blob });
+      toast("Saved: Stop Asking for Permission.");
+    } catch (e) {
+      var c = e && e.code;
+      if (c === "declined") toast("Download cancelled.");
+      else if (c === "rate_limited") toast("A save is already open. Finish it first.");
+      else sheet('<h2>Couldn\'t save the file</h2><p>Open the PDF instead and save it from there.</p><a class="btn" href="' + BOOK.file + '" target="_blank" rel="noopener"><i data-lucide="external-link"></i>Open PDF</a>');
+    } finally { downloading = false; }
+  }
+
+  /* ================= shared ================= */
+  var stack = [];
+  function bind() {
+    function each(sel, fn) { Array.prototype.forEach.call(view.querySelectorAll(sel), function (b) { b.addEventListener("click", function (e) { fn(b, e); }); }); }
+    each("[data-go]", function () { stack.push(S.tab); gatherings(); });
+    each("[data-tabgo]", function (b) { S.tab = b.dataset.tabgo; stack = []; route(); });
+    each("[data-filter]", function (b) { S.pathFilter = b.dataset.filter; S.tab = "learn"; stack = []; route(); });
+    each("[data-path]", function (b) { stack.push(S.tab); pathDetail(b.dataset.path); });
+    each("[data-ch]", function (b) { stack.push(S.tab); challengeDetail(b.dataset.ch); });
+    each("[data-dl]", function () { downloadBook(); });
+    each("[data-book]", function () { stack.push(S.tab); bookDetail(); });
+    each("[data-back]", function () { stack.pop(); route("enter-left"); });
+    each("[data-req]", function (b) {
+      S.requested[b.dataset.req] = true;
+      var card = b.closest(".event"), g = GATHERINGS.filter(function (x) { return x.id === b.dataset.req; })[0];
+      var tmp = document.createElement("div"); tmp.innerHTML = eventCard(g); card.replaceWith(tmp.firstChild); icons(); bind();
+      var s = document.getElementById("s-" + g.id); if (s) s.classList.add("flash");
+      toast(g.left === 0 ? "Added to the waitlist." : "Request sent. You'll hear back by Thursday.");
+    });
+  }
+  Array.prototype.forEach.call(tabbar.querySelectorAll(".tab"), function (t) {
+    t.addEventListener("click", function () { S.tab = t.dataset.tab; stack = []; if (t.dataset.tab === "learn" && S.pathFilter !== "all") S.pathFilter = "all"; route(); });
+  });
+
+  function sheet(html, bindFn) {
+    overlay.innerHTML = '<div class="scrim" id="scrim"></div><div class="sheet" role="dialog" aria-modal="true"><div class="grab"></div>' + html + "</div>";
+    document.getElementById("scrim").addEventListener("click", closeSheet);
+    icons();
+    if (bindFn) bindFn(overlay.querySelector(".sheet"));
+  }
+  function closeSheet() { overlay.innerHTML = ""; }
+  var toastTimer;
+  function toast(msg) {
+    var old = document.querySelector(".toast"); if (old) old.remove();
+    var el = document.createElement("div"); el.className = "toast"; el.setAttribute("role", "status");
+    el.innerHTML = '<i data-lucide="check-circle-2"></i><span>' + esc(msg) + "</span>";
+    if (tabbar.hidden) el.style.bottom = "28px";
+    document.getElementById("app").appendChild(el); icons();
+    clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.remove(); }, 2600);
+  }
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+
+  /* ================= desktop block ================= */
+  (function () {
+    var url = document.getElementById("applink").textContent;
+    try { if (window.QRCode) new QRCode(document.getElementById("qr"), { text: url, width: 160, height: 160, colorDark: "#141210", colorLight: "#efece5", correctLevel: QRCode.CorrectLevel.M }); } catch (e) {}
+    document.getElementById("copylink").addEventListener("click", function () {
+      var b = this, sel = function () { var r = document.createRange(); r.selectNodeContents(document.getElementById("applink")); var w = getSelection(); w.removeAllRanges(); w.addRange(r); };
+      try { navigator.clipboard.writeText(url).then(function () { b.textContent = "Copied"; }, sel); } catch (e) { sel(); }
+    });
+  })();
+
+  icons();
+  gate();
+})();
+</script>
+
+</body>
+</html>
