@@ -389,10 +389,14 @@ textarea:focus { border-color: var(--ember); }
 .gate .panel::before { content: ""; position: absolute; left: 24px; right: 24px; top: 12px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg fill='none' stroke-linecap='butt'%3E%3Cpath d='M0 4C10 4 10 12 20 12S30 4 40 4' stroke='%23c9a46a' stroke-width='2'/%3E%3Cpath d='M0 12C10 12 10 4 20 4S30 12 40 12' stroke='%23c9a46a' stroke-width='2'/%3E%3Cpath d='M6 5.2C9 6.4 11 9.6 14 10.8' stroke='%23141210' stroke-width='5'/%3E%3Cpath d='M5 4.9C9 6.2 11 9.8 15 11.1' stroke='%23c9a46a' stroke-width='2'/%3E%3Cg transform='scale(1,-1) translate(0,-16)'%3E%3Cpath d='M26 5.2C29 6.4 31 9.6 34 10.8' stroke='%23141210' stroke-width='5'/%3E%3Cpath d='M25 4.9C29 6.2 31 9.8 35 11.1' stroke='%23c9a46a' stroke-width='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat-x center / 40px 16px; opacity: 0.6; }
 .promo { padding-bottom: 34px; }
 .promo::after { content: ""; position: absolute; left: 20px; right: 20px; bottom: 10px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg fill='none' stroke-linecap='butt'%3E%3Cpath d='M0 4C10 4 10 12 20 12S30 4 40 4' stroke='%23c9a46a' stroke-width='2'/%3E%3Cpath d='M0 12C10 12 10 4 20 4S30 12 40 12' stroke='%23c9a46a' stroke-width='2'/%3E%3Cpath d='M6 5.2C9 6.4 11 9.6 14 10.8' stroke='%23141210' stroke-width='5'/%3E%3Cpath d='M5 4.9C9 6.2 11 9.8 15 11.1' stroke='%23c9a46a' stroke-width='2'/%3E%3Cg transform='scale(1,-1) translate(0,-16)'%3E%3Cpath d='M26 5.2C29 6.4 31 9.6 34 10.8' stroke='%23141210' stroke-width='5'/%3E%3Cpath d='M25 4.9C29 6.2 31 9.8 35 11.1' stroke='%23c9a46a' stroke-width='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat-x center / 40px 16px; opacity: 0.45; }
-.tabbar { border-top: 0; }
-.tabbar::before { content: ""; position: absolute; left: 0; right: 0; top: -8px; height: 16px; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='16' viewBox='0 0 40 16'%3E%3Cg fill='none' stroke-linecap='butt'%3E%3Cpath d='M0 4C10 4 10 12 20 12S30 4 40 4' stroke='%23c9a46a' stroke-width='2'/%3E%3Cpath d='M0 12C10 12 10 4 20 4S30 12 40 12' stroke='%23c9a46a' stroke-width='2'/%3E%3Cpath d='M6 5.2C9 6.4 11 9.6 14 10.8' stroke='%23141210' stroke-width='5'/%3E%3Cpath d='M5 4.9C9 6.2 11 9.8 15 11.1' stroke='%23c9a46a' stroke-width='2'/%3E%3Cg transform='scale(1,-1) translate(0,-16)'%3E%3Cpath d='M26 5.2C29 6.4 31 9.6 34 10.8' stroke='%23141210' stroke-width='5'/%3E%3Cpath d='M25 4.9C29 6.2 31 9.8 35 11.1' stroke='%23c9a46a' stroke-width='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat-x center / 40px 16px; opacity: 0.35; pointer-events: none; }
 .sec-h h2::before { content: ""; display: inline-block; width: 8px; height: 8px; margin: 0 10px 3px 0; transform: rotate(45deg); border: 1.5px solid var(--ember); vertical-align: middle; }
 
+.tab.center { position: relative; }
+.tab .fab { position: relative; }
+.fabchain { position: absolute; left: 50%; top: 50%; width: 84px; height: 84px; transform: translate(-50%, -50%); pointer-events: none; transition: transform 500ms ease-out; }
+.tab.center.on .fabchain { transform: translate(-50%, -50%) rotate(30deg); }
+.tab .fab { box-shadow: 0 0 0 1px oklch(0.76 0.09 72 / 0.55), 0 8px 26px oklch(0.6 0.09 65 / 0.30), 0 0 0 10px var(--bg) !important; }
+.tab.center.on .fab { box-shadow: 0 0 0 1.5px var(--ember), 0 8px 30px oklch(0.7 0.1 70 / 0.5), 0 0 0 10px var(--bg) !important; }
 /* ---------- desktop block: the app is phone-only ---------- */
 .desk { display: none; }
 @media (hover: hover) and (pointer: fine) {
@@ -1004,6 +1008,31 @@ textarea:focus { border-color: var(--ember); }
     clearTimeout(toastTimer); toastTimer = setTimeout(function () { el.remove(); }, 2600);
   }
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closeSheet(); });
+
+  /* ================= celtic chain around the centre button ================= */
+  (function () {
+    var C = 42, Rr = 35.5, A = 2.4, N = 12, steps = 720;
+    function strand(sign, t0, t1) {
+      var d = "";
+      for (var i = 0; i <= steps; i++) {
+        var t = t0 + (t1 - t0) * i / steps, r = Rr + sign * A * Math.sin(N * t);
+        d += (i ? "L" : "M") + (C + r * Math.cos(t)).toFixed(2) + " " + (C + r * Math.sin(t)).toFixed(2);
+      }
+      return d;
+    }
+    var gold = "var(--ember)", bg = "var(--bg)", out = "";
+    out += '<path d="' + strand(1, 0, 2 * Math.PI) + 'Z" fill="none" style="stroke:' + gold + '" stroke-width="1.6"/>';
+    out += '<path d="' + strand(-1, 0, 2 * Math.PI) + 'Z" fill="none" style="stroke:' + gold + '" stroke-width="1.6"/>';
+    // crossings sit where sin(N t) = 0; alternate which strand passes over
+    for (var k = 0; k < 2 * N; k++) {
+      var tc = k * Math.PI / N, w = 0.09, sign = k % 2 ? 1 : -1;
+      var seg = strand(sign, tc - w, tc + w);
+      out += '<path d="' + seg + '" fill="none" style="stroke:' + bg + '" stroke-width="4.4" stroke-linecap="butt"/>';
+      out += '<path d="' + seg + '" fill="none" style="stroke:' + gold + '" stroke-width="1.6" stroke-linecap="butt"/>';
+    }
+    var holder = document.querySelector(".tab.center .fab");
+    if (holder) holder.insertAdjacentHTML("afterbegin", '<svg class="fabchain" viewBox="0 0 84 84" aria-hidden="true">' + out + "</svg>");
+  })();
 
   /* ================= desktop block ================= */
   (function () {
